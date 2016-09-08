@@ -1,0 +1,31 @@
+package com.brko.service.crawler.impl;
+
+import com.brko.service.AbstractServiceIntegrationTest;
+import com.brko.service.crawler.exceptions.CrawlingPapersException;
+import com.brko.service.crawler.interfaces.ArxivPaperSearcherService;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.io.IOException;
+
+/**
+ *  Tests for {@link ArxivPaperSearcherServiceImpl} class.
+ *
+ * Created by Petre on 9/8/2016.
+ */
+@RunWith(SpringJUnit4ClassRunner.class)
+public class ArxivPaperSearcherServiceImplTest extends AbstractServiceIntegrationTest {
+
+    @Autowired
+    private ArxivPaperSearcherService arxivPaperSearcherService;
+
+    @Ignore
+    @Test
+    public void shouldCrawlAllPaperAbstractsForSeptember2016() throws IOException, CrawlingPapersException {
+        arxivPaperSearcherService.searchPapersByMonthAndYearInArxiv(2016, 9);
+    }
+
+}
