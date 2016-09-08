@@ -22,9 +22,6 @@ public class ArxivPaperSearcherServiceImpl implements ArxivPaperSearcherService 
 
     private static final int CONSISTENT_ERRORS_THRESHOLD = 4;
 
-    private String INTERNAL_PATH_FOR_SAVING_THE_SUMMARIES =
-            "D:\\Fakultet\\Osmi Semestar\\Diplomska rabota\\crawled_summaries";
-
     @Autowired
     private PaperSummeryReaderService paperSummeryReaderService;
 
@@ -57,7 +54,8 @@ public class ArxivPaperSearcherServiceImpl implements ArxivPaperSearcherService 
 
     private void savePaperSummaryInTheFileSystem(PaperSummary paperSummary) throws IOException {
 
-        File summaryFile = new File(INTERNAL_PATH_FOR_SAVING_THE_SUMMARIES + "\\" +paperSummary.getArxivId());
+        File summaryFile = new File(
+                GlobalConstants.INTERNAL_PATH_FOR_SAVING_THE_SUMMARIES + "\\" +paperSummary.getArxivId());
         summaryFile.createNewFile();
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(summaryFile));
 
@@ -69,12 +67,10 @@ public class ArxivPaperSearcherServiceImpl implements ArxivPaperSearcherService 
 
     private String constructPaperUrl(int year, int month, int consecutiveNumber) {
 
-        String url = String.format("%s/%02d%02d.%05d",
+        return String.format("%s/%02d%02d.%05d",
                 GlobalConstants.ARXIV_ABSTRACTS_BASE_URL,
                 year % 100,
                 month,
                 consecutiveNumber);
-
-        return url;
     }
 }

@@ -20,4 +20,8 @@ public final class GlobalConstants {
     public static final String ARXIV_BASE_URL = "https://arxiv.org";
 
     public static final String ARXIV_ABSTRACTS_BASE_URL = ARXIV_BASE_URL + "/abs";
+
+    public static String INTERNAL_PATH_FOR_SAVING_THE_SUMMARIES =
+            "D:\\Fakultet\\Osmi Semestar\\Diplomska rabota\\crawled_summaries";
+
 }
