@@ -13,7 +13,6 @@ public class App {
     public static void main(String[] args ) throws IOException,
             ReadPdfContentException, ReadPaperSummaryFromHtmlException, CrawlingPapersException {
 
-        ArxivPaperSearcherService arxivPaperSearcherService = new ArxivPaperSearcherServiceImpl();
-        arxivPaperSearcherService.searchPapersByMonthAndYearInArxiv(2016, 9);
+
     }
 }
