@@ -16,6 +16,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.2.5.RELEASE</spring.version>
 		<project_loc>../BrkoServiceJava</project_loc>
+		<nd4j.version>0.5.0</nd4j.version>
+		<dl4j.version>0.5.0</dl4j.version>
 	</properties>
 
 	<dependencies>
@@ -165,15 +167,20 @@
 		<dependency>
 			<groupId>org.deeplearning4j</groupId>
 			<artifactId>deeplearning4j-core</artifactId>
-			<version>0.5.0</version>
+			<version>${dl4j.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.deeplearning4j</groupId>
 			<artifactId>deeplearning4j-nlp</artifactId>
-			<version>0.5.0</version>
+			<version>${dl4j.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.nd4j</groupId>
+			<artifactId>nd4j-native-platform</artifactId>
+			<version>${nd4j.version}</version>
+		</dependency>
 
 		<!-- test dependencies -->
 		<dependency>

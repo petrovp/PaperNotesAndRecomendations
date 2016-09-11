@@ -202,6 +202,13 @@
     <orderEntry type="library" name="Maven: com.github.spullara.mustache.java:compiler:0.8.17" level="project" />
     <orderEntry type="library" name="Maven: io.dropwizard:dropwizard-views-freemarker:0.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.nd4j:nd4j-jackson:0.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.nd4j:nd4j-native-platform:0.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.nd4j:nd4j-native:0.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.nd4j:nd4j-native-api:0.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.nd4j:nd4j-native:windows-x86_64:0.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.nd4j:nd4j-native:linux-x86_64:0.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.nd4j:nd4j-native:macosx-x86_64:0.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.nd4j:nd4j-native:linux-ppc64le:0.5.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:4.2.5.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-all:1.10.19" level="project" />
