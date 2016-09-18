@@ -20,7 +20,7 @@ import java.io.*;
 @Service
 public class ArxivPaperSearcherServiceImpl implements ArxivPaperSearcherService {
 
-    private static final int CONSISTENT_ERRORS_THRESHOLD = 4;
+    private static final int CONSISTENT_ERRORS_THRESHOLD = 50;
 
     @Autowired
     private PaperSummeryReaderService paperSummeryReaderService;
@@ -28,6 +28,7 @@ public class ArxivPaperSearcherServiceImpl implements ArxivPaperSearcherService 
     public void searchPapersByMonthAndYearInArxiv(int year, int month)
             throws CrawlingPapersException, IOException {
 
+        System.out.println("Crawling for " + month + " " +year);
         int numberOfConsistentErrors = 0;
         int consecutiveNumber = 0;
         while (numberOfConsistentErrors < CONSISTENT_ERRORS_THRESHOLD) {
@@ -36,15 +37,11 @@ public class ArxivPaperSearcherServiceImpl implements ArxivPaperSearcherService 
             PaperSummary paperSummary;
 
             try {
-
                 String url = constructPaperUrl(year, month, consecutiveNumber);
                 paperSummary = paperSummeryReaderService.readAbstractFromArxivHtml(url);
-
-            } catch (HttpStatusException e) {
+            } catch (Exception e) {
                 numberOfConsistentErrors++;
                 continue;
-            } catch (ReadPaperSummaryFromHtmlException e) {
-                throw new CrawlingPapersException("Exception occurred during crawling the papers.", e);
             }
 
             numberOfConsistentErrors = 0;

@@ -22,6 +22,7 @@ public final class GlobalConstants {
     public static final String ARXIV_ABSTRACTS_BASE_URL = ARXIV_BASE_URL + "/abs";
 
     public static String INTERNAL_PATH_FOR_SAVING_THE_SUMMARIES =
-            "D:\\Fakultet\\Osmi Semestar\\Diplomska rabota\\crawled_summaries";
+            "C:\\Users\\ppetrov\\Documents\\ppt_private\\diplomska\\crowledArxiv";
 
+    public final static int VECTOR_SIZE = 300;
 }

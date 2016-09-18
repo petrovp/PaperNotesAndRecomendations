@@ -22,10 +22,9 @@ public class ArxivPaperSearcherServiceImplTest extends AbstractServiceIntegratio
     @Autowired
     private ArxivPaperSearcherService arxivPaperSearcherService;
 
-    @Ignore
     @Test
-    public void shouldCrawlAllPaperAbstractsForSeptember2016() throws IOException, CrawlingPapersException {
-        arxivPaperSearcherService.searchPapersByMonthAndYearInArxiv(2016, 9);
+    public void shouldCrawlAllPaperAfter2015() throws IOException, CrawlingPapersException {
+        
     }
 
 }
