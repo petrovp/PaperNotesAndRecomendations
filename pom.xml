@@ -181,6 +181,11 @@
 			<artifactId>nd4j-native-platform</artifactId>
 			<version>${nd4j.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>edu.stanford.nlp</groupId>
+			<artifactId>stanford-corenlp</artifactId>
+			<version>3.5.1</version>
+		</dependency>
 
 		<!-- test dependencies -->
 		<dependency>

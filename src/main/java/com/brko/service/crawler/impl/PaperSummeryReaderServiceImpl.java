@@ -1,7 +1,7 @@
 package com.brko.service.crawler.impl;
 
 import com.brko.persistance.datamodel.PaperSummary;
-import com.brko.service.crawler.interfaces.PaperSummeryReaderService;
+import com.brko.service.crawler.PaperSummeryReaderService;
 import com.brko.service.crawler.exceptions.ReadPaperSummaryFromHtmlException;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;

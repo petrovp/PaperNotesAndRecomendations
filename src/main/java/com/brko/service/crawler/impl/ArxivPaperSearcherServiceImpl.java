@@ -3,10 +3,8 @@ package com.brko.service.crawler.impl;
 import com.brko.GlobalConstants;
 import com.brko.persistance.datamodel.PaperSummary;
 import com.brko.service.crawler.exceptions.CrawlingPapersException;
-import com.brko.service.crawler.exceptions.ReadPaperSummaryFromHtmlException;
-import com.brko.service.crawler.interfaces.ArxivPaperSearcherService;
-import com.brko.service.crawler.interfaces.PaperSummeryReaderService;
-import org.jsoup.HttpStatusException;
+import com.brko.service.crawler.ArxivPaperSearcherService;
+import com.brko.service.crawler.PaperSummeryReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

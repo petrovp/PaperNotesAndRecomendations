@@ -1,4 +1,4 @@
-package com.brko.service.crawler.interfaces;
+package com.brko.service.crawler;
 
 import com.brko.service.crawler.exceptions.ReadPdfContentException;
 

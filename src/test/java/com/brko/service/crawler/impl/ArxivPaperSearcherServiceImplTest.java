@@ -2,8 +2,7 @@ package com.brko.service.crawler.impl;
 
 import com.brko.service.AbstractServiceIntegrationTest;
 import com.brko.service.crawler.exceptions.CrawlingPapersException;
-import com.brko.service.crawler.interfaces.ArxivPaperSearcherService;
-import org.junit.Ignore;
+import com.brko.service.crawler.ArxivPaperSearcherService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

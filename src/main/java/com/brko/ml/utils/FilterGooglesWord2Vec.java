@@ -22,11 +22,8 @@ public class FilterGooglesWord2Vec {
     static Map<String, float[]> wordVsVector = new TreeMap<String, float[]>();
 
     public static void main (String [] args) throws IOException {
-
         fillMyWordsSet();
-
         readAndFilterWordsFromGoogleModel();
-
         saveFilteredWordToVec();
     }
 

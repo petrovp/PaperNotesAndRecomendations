@@ -1,6 +1,6 @@
 package com.brko.service.crawler.impl;
 
-import com.brko.service.crawler.interfaces.PdfReaderService;
+import com.brko.service.crawler.PdfReaderService;
 import com.brko.service.crawler.exceptions.ReadPdfContentException;
 import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.io.RandomAccessBufferedFileInputStream;
