@@ -1,13 +1,22 @@
 package com.brko.persistance.datamodel;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 /**
  * Author charactestics.
  *
  * Created by Petre on 9/3/2016.
  */
-public class Author {
+@Document(collection = "author")
+public class Author extends NamedDocument {
 
-    String name;
+    private String url;
 
-    String url;
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }
