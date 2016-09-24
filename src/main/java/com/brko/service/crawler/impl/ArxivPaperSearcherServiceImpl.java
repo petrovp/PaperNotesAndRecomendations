@@ -5,6 +5,7 @@ import com.brko.persistance.datamodel.PaperSummary;
 import com.brko.service.crawler.exceptions.CrawlingPapersException;
 import com.brko.service.crawler.ArxivPaperSearcherService;
 import com.brko.service.crawler.PaperSummeryReaderService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,8 @@ import java.io.*;
 @Service
 public class ArxivPaperSearcherServiceImpl implements ArxivPaperSearcherService {
 
+    Logger logger = Logger.getLogger(getClass());
+
     private static final int CONSISTENT_ERRORS_THRESHOLD = 50;
 
     @Autowired
@@ -26,7 +29,7 @@ public class ArxivPaperSearcherServiceImpl implements ArxivPaperSearcherService 
     public void searchPapersByMonthAndYearInArxiv(int year, int month)
             throws CrawlingPapersException, IOException {
 
-        System.out.println("Crawling for " + month + " " +year);
+        logger.info("Crawling for " + month + " " +year);
         int numberOfConsistentErrors = 0;
         int consecutiveNumber = 0;
         while (numberOfConsistentErrors < CONSISTENT_ERRORS_THRESHOLD) {

@@ -5,12 +5,16 @@ import com.brko.service.crawler.exceptions.ReadPaperSummaryFromHtmlException;
 import com.brko.service.crawler.exceptions.ReadPdfContentException;
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.process.DocumentPreprocessor;
+import org.apache.log4j.Logger;
+import org.apache.log4j.spi.LoggerFactory;
 
 import java.io.*;
 import java.util.Iterator;
 import java.util.List;
 
 public class App {
+
+    private static Logger logger = Logger.getLogger(App.class);
 
     public static void main(String[] args ) throws IOException,
             ReadPdfContentException, ReadPaperSummaryFromHtmlException, CrawlingPapersException {
@@ -21,7 +25,7 @@ public class App {
         while (iterator.hasNext()) {
             List<HasWord> sentanceWords = iterator.next();
             for (HasWord hasWord : sentanceWords) {
-                System.out.println(hasWord.word());
+                logger.info(hasWord.word());
             }
         }
     }

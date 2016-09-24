@@ -2,6 +2,7 @@ package com.brko.ml.utils;
 
 import com.brko.GlobalConstants;
 import org.apache.commons.compress.compressors.gzip.GzipUtils;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.util.*;
@@ -16,6 +17,8 @@ import static org.deeplearning4j.models.embeddings.loader.WordVectorSerializer.r
  * Created by ppetrov on 9/18/2016.
  */
 public class FilterGooglesWord2Vec {
+
+    static Logger logger = Logger.getLogger(FilterGooglesWord2Vec.class);
 
     private static final int ONE_MILLION = 1000000;
     static Set<String> myWords = new HashSet<String>();
@@ -51,13 +54,13 @@ public class FilterGooglesWord2Vec {
         int words = Integer.parseInt(readString(dis));
         int size = Integer.parseInt(readString(dis));
 
-        System.out.println(words);
+        logger.info(words);
 
         for (int i = 0; i < words; ++i) {
             String word = readString(dis);
 
             if (i % ONE_MILLION == 0) {
-                System.out.println(i + " : " + word);
+                logger.info(i + " : " + word);
             }
 
             float[] vector = new float[size];
