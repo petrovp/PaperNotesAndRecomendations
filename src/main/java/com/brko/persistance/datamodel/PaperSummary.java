@@ -1,6 +1,7 @@
 package com.brko.persistance.datamodel;
 
 import org.apache.commons.lang3.text.StrBuilder;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
@@ -9,7 +10,8 @@ import java.util.List;
  *
  * Created by Petre on 9/3/2016.
  */
-public class PaperSummary {
+@Document(collection = "papers")
+public class PaperSummary extends NamedDocument{
 
     private String arxivId;
 
@@ -19,8 +21,7 @@ public class PaperSummary {
 
     private List<Author> authors;
 
-    private String category;
-
+    private Category category;
 
     public List<Author> getAuthors() {
         return authors;
@@ -54,12 +55,12 @@ public class PaperSummary {
         this.arxivId = arxivId;
     }
 
-    public String getCategory() {
-        return category;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public Category getCategory() {
+        return category;
     }
 
     @Override

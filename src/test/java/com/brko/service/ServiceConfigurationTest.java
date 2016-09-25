@@ -5,6 +5,7 @@ import com.brko.persistance.repository.AuthorRepository;
 import com.brko.service.crawler.exceptions.ReadPaperSummaryFromHtmlException;
 import org.hamcrest.MatcherAssert;
 import org.jsoup.HttpStatusException;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class ServiceConfigurationTest extends AbstractServiceIntegrationTest{
     }
 
     @Test
+    @Ignore
     public void shouldTestMongoDb() {
         Author author = new Author();
         author.setId("author2");
