@@ -4,18 +4,21 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>BrkoServiceJava</groupId>
-	<artifactId>com.brko.service</artifactId>
+	<groupId>BrkoParentProject</groupId>
+	<artifactId>com.brko</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+    <modules>
+        <module>PaperNotesAndRecomendationsWeb</module>
+		<module>PaperNotesAndRecomendationsService</module>
+	</modules>
+    <packaging>pom</packaging>
 
-	<name>com.brko.service</name>
+	<name>com.brko.parent</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.2.5.RELEASE</spring.version>
-		<project_loc>../BrkoServiceJava</project_loc>
 		<nd4j.version>0.5.0</nd4j.version>
 		<dl4j.version>0.5.0</dl4j.version>
 	</properties>
@@ -241,27 +244,4 @@
 		</dependency>
 
 	</dependencies>
-	
-	<build>
-		<finalName>BrkoServiceJava</finalName>
-		<plugins>	
-			<plugin>
-        		<artifactId>maven-assembly-plugin</artifactId>
-		        <version>2.6</version>
-		        <executions>
-			        <execution>
-			            <phase>package</phase>
-			            <goals>
-			              <goal>single</goal>
-			            </goals>
-			        </execution>
-		        </executions>
-		        <configuration>
-		          <descriptorRefs>
-		            <descriptorRef>jar-with-dependencies</descriptorRef>
-		          </descriptorRefs>
-		        </configuration>
-	      </plugin>
-		</plugins>
-	</build>
 </project>
