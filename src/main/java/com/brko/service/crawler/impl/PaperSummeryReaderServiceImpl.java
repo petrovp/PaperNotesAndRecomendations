@@ -1,5 +1,6 @@
 package com.brko.service.crawler.impl;
 
+import com.brko.persistance.datamodel.Category;
 import com.brko.persistance.datamodel.PaperSummary;
 import com.brko.service.crawler.PaperSummeryReaderService;
 import com.brko.service.crawler.exceptions.ReadPaperSummaryFromHtmlException;
@@ -33,7 +34,11 @@ public class PaperSummeryReaderServiceImpl implements PaperSummeryReaderService 
             paperSummary = new PaperSummary();
             paperSummary.setAbstractContent(extractElement(doc, ABSTRACT_SELECTOR, 10));
             paperSummary.setTitle(extractElement(doc, TITLE_SELECTOR, 7));
-            paperSummary.setCategory(extractElement(doc, CATEGORY_SELECTOR, 0));
+
+            String categoryName = extractElement(doc, CATEGORY_SELECTOR, 0);
+            Category category = new Category();
+            category.setName(categoryName);
+            paperSummary.setCategory(category);
 
             String arxivId = paperSummeryUrl.substring(paperSummeryUrl.lastIndexOf('/') + 1);
             paperSummary.setArxivId(arxivId);

@@ -2,6 +2,7 @@ package com.brko.service.crawler.impl;
 
 import com.brko.GlobalConstants;
 import com.brko.persistance.datamodel.PaperSummary;
+import com.brko.persistance.repository.PaperSummaryRepository;
 import com.brko.service.crawler.exceptions.CrawlingPapersException;
 import com.brko.service.crawler.ArxivPaperSearcherService;
 import com.brko.service.crawler.PaperSummeryReaderService;
@@ -26,6 +27,9 @@ public class ArxivPaperSearcherServiceImpl implements ArxivPaperSearcherService 
     @Autowired
     private PaperSummeryReaderService paperSummeryReaderService;
 
+    @Autowired
+    private PaperSummaryRepository paperSummaryRepository;
+
     public void searchPapersByMonthAndYearInArxiv(int year, int month)
             throws CrawlingPapersException, IOException {
 
@@ -47,6 +51,7 @@ public class ArxivPaperSearcherServiceImpl implements ArxivPaperSearcherService 
 
             numberOfConsistentErrors = 0;
             savePaperSummaryInTheFileSystem(paperSummary);
+            paperSummaryRepository.save(paperSummary);
         }
     }
 
