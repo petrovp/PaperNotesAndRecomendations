@@ -14,8 +14,6 @@ public class User extends NamedDocument {
 
     private String password;
 
-    private List<User> colaborators;
-
     public String getUsername() {
         return username;
     }
@@ -30,13 +28,5 @@ public class User extends NamedDocument {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<User> getColaborators() {
-        return colaborators;
-    }
-
-    public void setColaborators(List<User> colaborators) {
-        this.colaborators = colaborators;
     }
 }
