@@ -11,7 +11,7 @@
     <artifactId>com.brko.service</artifactId>
     <packaging>jar</packaging>
 
-    <name>com.brko.service</name>
+    <name>BrkoServiceJava</name>
     <url>http://maven.apache.org</url>
 
     <properties>

@@ -9,7 +9,7 @@
     <groupId>BrkoWeb</groupId>
     <artifactId>com.brko.web</artifactId>
     <packaging>war</packaging>
-    <name>com.brko.web Maven Webapp</name>
+    <name>BrkoWeb</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
