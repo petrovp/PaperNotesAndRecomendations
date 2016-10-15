@@ -4,10 +4,12 @@
 
 var path = require('path');
 
+var webpack = require('webpack');
+
 var appRoot = 'src/main/js';
 
-module.exports = {
-    devtool: 'cheap-module-source-map',
+var config = {
+    devtool: 'source-map',
 
     context: path.join(__dirname, appRoot),
 
@@ -29,12 +31,25 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: 'style!css'
+            },
+            {
+                test: /\.html$/,
+                loader: 'raw-loader'
             }
         ]
     },
 
+    resolve: {
+
+        extensions: ['', '.js', '.jsx'],
+
+        root: [
+            path.join(__dirname, appRoot, 'app'),
+        ]
+    },
+
     output: {
-        path: path.join(__dirname, appRoot, '/fin_dist/js'),
+        path: path.join(__dirname, appRoot, '/dist/js'),
         publicPath: 'http://localhost:8082/globalres/js/',
         filename: '[name].bundle.js'
     },
@@ -47,3 +62,4 @@ module.exports = {
     }
 };
 
+module.exports = config;

@@ -6,13 +6,14 @@
   "author": "petrovp",
   "main": "src/main/js/app/index.js",
   "scripts": {
-	"start": "npm run dev",
+    "start": "npm run dev",
     "dev": "webpack-dev-server --hot --inline",
     "lint-fix": "eslint --ext .js* --fix ./src/main/js/app",
-    "file-server": "cd ./src/main/js/fin_dist/js && static -c 0",
     "prebuild": "npm run clean",
     "build": "webpack",
-    "serve": "webpack-dev-server --progress"
+    "build-dev": "npm run build",
+    "build-prod": "npm run build",
+    "postbuild": "npm run make-dirs && npm run copy-assets"
   },
   "dependencies": {
     "babel-runtime": "6.11.6",
@@ -28,7 +29,6 @@
     "react-router": "2.8.1",
     "react-router-redux": "4.0.6",
     "redux": "3.6.0",
-    "redux-freeze": "0.1.4",
     "redux-thunk": "2.1.0"
   },
   "devDependencies": {
@@ -53,15 +53,12 @@
     "file-loader": "0.9.0",
     "lodash-webpack-plugin": "0.10.1",
     "ncp": "2.0.0",
-    "mkdirp":"0.5.1",
     "node-sass": "3.10.0",
     "postcss-loader": "0.13.0",
     "raw-loader": "0.5.1",
     "redux-mock-store": "1.1.2",
     "rimraf": "2.5.4",
     "sass-loader": "4.0.2",
-    "sinon": "1.17.5",
-    "sinon-chai": "2.8.0",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
     "webpack": "1.13.2",

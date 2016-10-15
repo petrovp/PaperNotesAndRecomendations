@@ -5,9 +5,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from 'brko/App';
+import App from './brko/App';
 
 ReactDOM.render(
-    App,
+    <App />,
     document.getElementById('app-main')
 );
