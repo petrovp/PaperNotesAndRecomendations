@@ -11,9 +11,7 @@
     "lint-fix": "eslint --ext .js* --fix ./src/main/js/app",
     "prebuild": "npm run clean",
     "build": "webpack",
-    "build-dev": "npm run build",
-    "build-prod": "npm run build",
-    "postbuild": "npm run make-dirs && npm run copy-assets"
+    "build-dev": "npm run build"
   },
   "dependencies": {
     "babel-runtime": "6.11.6",
