@@ -6,4 +6,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://java.sun.com/xml/ns/javaee">
     <display-name>PaperNotesAndRecommendation</display-name>
+
+    <!-- ====================================================================== -->
+    <!--                             Filters                                    -->
+    <!-- ====================================================================== -->
+    <filter>
+        <filter-name>cors-filter</filter-name>
+        <filter-class>com.brko.web.interceptors.CorsFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>cors-filter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+
 </web-app>

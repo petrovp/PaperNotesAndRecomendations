@@ -15,7 +15,7 @@ export function addTodo(text) {
 
 export function addTodoAsync(text) {
   return dispatch => {
-    fetch('http://httpbin.org/get')
+    fetch('http://localhost:8080/demo')
       .then(response => {
         dispatch(addTodo(`${text} (with origin from): ${response}`));
       });
