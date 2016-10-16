@@ -3,10 +3,16 @@
  */
 
 var path = require('path');
-
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var appRoot = 'src/main/js';
+
+var shouldUseSourceMaps = true;
+var cssLoaderConfig = {
+    discardEmpty: true,
+    sourceMap: shouldUseSourceMaps
+};
 
 var config = {
     devtool: 'source-map',
@@ -29,8 +35,13 @@ var config = {
                 loader: 'babel-loader'
             },
             {
-                test: /\.css$/,
-                loader: 'style!css'
+                test: /\.s?css$/,
+                exclude: /(node_modules)/,
+                loader: ExtractTextPlugin.extract('style-loader', [
+                    'css-loader?' + JSON.stringify(cssLoaderConfig),
+                    'postcss-loader',
+                    'sass-loader' + (shouldUseSourceMaps ? '?sourceMap' : '')
+                ])
             },
             {
                 test: /\.html$/,
@@ -40,13 +51,15 @@ var config = {
     },
 
     resolve: {
-
         extensions: ['', '.js', '.jsx'],
-
         root: [
             path.join(__dirname, appRoot, 'app'),
         ]
     },
+
+    plugins: [
+        new ExtractTextPlugin('[name].css'),
+    ],
 
     output: {
         path: path.join(__dirname, appRoot, '/dist/js'),
