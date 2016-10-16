@@ -1,0 +1,18 @@
+/**
+ * Created by ppetrov on 10/14/2016.
+ */
+
+@import "../../assets/styles/Global.scss";
+
+.demo-module {
+  .icon-button {
+    margin: 10px !important;
+
+    &.size-custom {
+      background-size: 50px;
+      padding: 5px;
+
+      @include size(60px);
+    }
+  }
+}

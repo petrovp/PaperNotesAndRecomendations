@@ -1,0 +1,8 @@
+/**
+ * Created by ppetrov on 10/14/2016.
+ */
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}

@@ -4,11 +4,10 @@
 
 import React from 'react';
 
-export default function App() {
-    console.log(222);
-    return(
+export default function Home() {
+    return (
         <div>
-            APPPPPP!!!
+            HOME PAGE
         </div>
-    );
+    )
 }
