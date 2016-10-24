@@ -3,11 +3,12 @@
  */
 
 import React from 'react';
+import Register from '../registration/Register'
 
 export default function Home() {
     return (
         <div>
-            HOME PAGE
+            <Register />
         </div>
     )
 }
