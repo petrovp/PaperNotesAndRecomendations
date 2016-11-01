@@ -3,13 +3,12 @@
  */
 
 import React from 'react';
-
-import { Form, Button, FormGroup, FormControl } from 'react-bootstrap';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as Actions from './loginActions'
+
+import { Form, Button, FormGroup, FormControl } from 'react-bootstrap';
 
 class Login extends React.Component{
 
@@ -41,8 +40,6 @@ class Login extends React.Component{
         );
     }
 }
-
-
 
 function mapDispatchToProps(dispatch) {
     const allActionCreators = Object.assign(

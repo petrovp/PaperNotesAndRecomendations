@@ -10,6 +10,8 @@ import configureStore from '../brko/redux-config/store';
 
 import Demo from './demo/ui/Demo';
 import Home from './moduls/home/Home';
+import Login from './moduls/login/Login';
+import Register from './moduls/registration/Register';
 
 const store = configureStore(browserHistory);
 const appRootUrl = "/";
@@ -21,6 +23,9 @@ export default function App() {
                 <Route path={appRootUrl} >
                     <IndexRoute component={Home} />
                     <Route path={appRootUrl+"demo"} component={Demo}/>
+                    <Route path={appRootUrl+"login"} component={Login}/>
+                    <Route path={appRootUrl+"register"} component={Register}/>
+
                 </Route>
             </Router>
         </Provider>

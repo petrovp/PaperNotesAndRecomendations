@@ -6,9 +6,11 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
 import demoReducer from '../demo/reducers/demoRootReducer';
+import registrationReducer from '../moduls/registration/registraionReducer'
 
 export const rootReducer = combineReducers({
   demo: demoReducer(),
+  registration: registrationReducer(),
   routing: routerReducer
 });
 
