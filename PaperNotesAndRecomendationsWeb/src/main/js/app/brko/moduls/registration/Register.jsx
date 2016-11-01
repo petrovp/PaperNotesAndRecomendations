@@ -29,7 +29,7 @@ class Register extends React.Component {
             tryRegister,
         } = this.props;
 
-        const handleRegisterClick = (props) => {
+        const handleRegisterClick = () => {
             console.log(this.user);
             tryRegister(this.user);
         };

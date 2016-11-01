@@ -12,25 +12,44 @@ import { Form, Button, FormGroup, FormControl } from 'react-bootstrap';
 
 class Login extends React.Component{
 
+    constructor(props) {
+        super(props);
+        this.user={};
+    }
+
     render() {
         const {
             makeLoginRequest
         } = this.props;
 
         const handleOnLoginClick = () => {
-            const email = document.getElementsByName("emailInput").valueOf();
-            const password = document.getElementsByName("passwordInput").valueOf();
-            return makeLoginRequest(email, password);
+            console.log(this.user);
+            makeLoginRequest(this.user);
         };
+
+        const handleChange = (e) => {
+            this.user[e.target.name]=e.target.value;
+        }
 
         return (
             <Form>
-                <FormGroup>
-                    <FormControl type="email" placeholder="Email" name="emailInput"/>
+                <FormGroup bsSize="sm">
+                    <FormControl
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                        onChange={handleChange}
+                    />
                 </FormGroup>
 
-                <FormGroup>
-                    <FormControl type="password" placeholder="Password" name="passwordInput"/>
+                <FormGroup bsSize="sm">
+                    <FormControl
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        bsSize="sm"
+                        onChange={handleChange}
+                    />
                 </FormGroup>
 
                 <Button active={true} bsSize="sm" bsStyle="primary" type="submit" onClick={handleOnLoginClick}>
