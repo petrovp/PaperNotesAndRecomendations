@@ -1,5 +1,6 @@
 package com.brko.web.config;
 
+import com.brko.web.config.security.SecurityConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -9,7 +10,8 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{
-            RootConfig.class
+            RootConfig.class,
+            SecurityConfig.class
         };
     }
 

@@ -1,8 +1,12 @@
-package com.brko.web.interceptors;
+package com.brko.web.config.security.interceptors;
 
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -10,9 +14,11 @@ import java.io.IOException;
  * Created by ppetrov on 10/16/2016.
  */
 @Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+
         HttpServletResponse response = (HttpServletResponse) res;
 
         response.setHeader("Access-Control-Allow-Origin", "*");
@@ -21,11 +27,14 @@ public class CorsFilter implements Filter {
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
 
-        chain.doFilter(req, res);
+        HttpServletRequest request = (HttpServletRequest) req;
+
+        if (!HttpMethod.OPTIONS.matches(request.getMethod())) {
+            chain.doFilter(req, res);
+        }
     }
 
     public void init(FilterConfig filterConfig) {}
 
     public void destroy() {}
-
 }

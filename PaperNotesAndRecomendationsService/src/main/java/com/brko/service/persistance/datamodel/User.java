@@ -16,6 +16,8 @@ public class User extends NamedDocument {
 
     private String lastName;
 
+    private Authority authority;
+
     public String getPassword() {
         return password;
     }
@@ -46,5 +48,13 @@ public class User extends NamedDocument {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Authority getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
     }
 }

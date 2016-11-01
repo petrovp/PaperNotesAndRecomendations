@@ -1,7 +1,6 @@
 package com.brko.web.config;
 
 import com.brko.web.api.ApiScanMarker;
-import com.brko.web.interceptors.InterceptorsScanMarker;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
@@ -9,8 +8,7 @@ import org.springframework.web.servlet.config.annotation.*;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackageClasses = {
-    ApiScanMarker.class,
-    InterceptorsScanMarker.class
+    ApiScanMarker.class
 })
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
