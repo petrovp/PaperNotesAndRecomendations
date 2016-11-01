@@ -19,23 +19,23 @@ import {
 
 class Register extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.user={};
+    }
+
     render() {
         const {
             tryRegister,
-            categories,
-            updateCategoryChecked
         } = this.props;
 
-        const checkForEmptyField = (user) =>
-            user.email.length !==0 && user.password.length !==0 && user.firstName.length !==0 && user.lastName.length !==0;
-
         const handleRegisterClick = (props) => {
-            user = {
-                email: props.email.value,
-                password: props.password.value
-            }
+            console.log(this.user);
+            tryRegister(this.user);
+        };
 
-            tryRegister(user);
+        const handleChange = (e) => {
+            this.user[e.target.name]=e.target.value;
         }
 
         return (
@@ -45,8 +45,7 @@ class Register extends React.Component {
                         name="email"
                         type="email"
                         placeholder="Email"
-                        bsSize="sm"
-                        ref={(email) => { this.email = email; }}
+                        onChange={handleChange}
                     />
                 </FormGroup>
 
@@ -56,7 +55,7 @@ class Register extends React.Component {
                         type="password"
                         placeholder="Password"
                         bsSize="sm"
-                        ref={(password) => { this.password = password; }}
+                        onChange={handleChange}
                     />
                 </FormGroup>
 
@@ -66,7 +65,7 @@ class Register extends React.Component {
                         type="text"
                         placeholder="First Name"
                         bsSize="sm"
-                        ref={(firstName) => { this.firstName = firstName; }}
+                        onChange={handleChange}
                     />
                 </FormGroup>
 
@@ -76,15 +75,11 @@ class Register extends React.Component {
                         type="text"
                         placeholder="Last Name"
                         bsSize="sm"
-                        ref={(lastName) => { this.lastName = lastName; }}
+                        onChange={handleChange}
                     />
                 </FormGroup>
 
-                <Button active={true} bsSize="sm" bsStyle="primary" onClick={handleRegisterClick(
-                    {
-                        email: this.email.value,
-                        firstName:this.firstName.value
-                    })}>
+                <Button active={true} bsSize="sm" bsStyle="primary" onClick={ handleRegisterClick }>
                     Register
                 </Button>
 
