@@ -7,10 +7,12 @@ import { routerReducer } from 'react-router-redux';
 
 import demoReducer from '../demo/reducers/demoRootReducer';
 import registrationReducer from '../moduls/registration/registraionReducer'
+import loginReducer from '../moduls/login/loginReducer'
 
 export const rootReducer = combineReducers({
   demo: demoReducer(),
   registration: registrationReducer(),
+  common:loginReducer(),
   routing: routerReducer
 });
 
