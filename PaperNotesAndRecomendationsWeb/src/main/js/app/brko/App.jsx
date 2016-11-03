@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
+import { persistStore } from 'redux-persist'
 import {  Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import configureStore from '../brko/redux-config/store';
@@ -16,18 +17,27 @@ import Register from './moduls/registration/Register';
 const store = configureStore(browserHistory);
 const appRootUrl = "/";
 
-export default function App() {
-    return (
-        <Provider store={store}>
-            <Router history={browserHistory}>
-                <Route path={appRootUrl} >
-                    <IndexRoute component={Home} />
-                    <Route path={appRootUrl+"demo"} component={Demo}/>
-                    <Route path={appRootUrl+"login"} component={Login}/>
-                    <Route path={appRootUrl+"register"} component={Register}/>
+class App extends React.Component{
 
-                </Route>
-            </Router>
-        </Provider>
-    )
-}
+    componentWillMount() {
+        persistStore(store);
+    }
+
+    render() {
+        return (
+            <Provider store={store}>
+                <Router history={browserHistory}>
+                    <Route path={appRootUrl}>
+                        <IndexRoute component={Home}/>
+                        <Route path={appRootUrl + "demo"} component={Demo}/>
+                        <Route path={appRootUrl + "login"} component={Login}/>
+                        <Route path={appRootUrl + "register"} component={Register}/>
+
+                    </Route>
+                </Router>
+            </Provider>
+        )
+    }
+};
+
+export default App;

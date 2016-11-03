@@ -3,6 +3,7 @@
  */
 
 import reduxThunkMiddleware from 'redux-thunk';
+import {autoRehydrate} from 'redux-persist'
 import { createStore, compose, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 
@@ -14,6 +15,7 @@ export default function configureStore(historyToUse) {
   const middlewares = [...defaultMiddlewares];
 
   const storeEnhancers = [
+    autoRehydrate(),
     applyMiddleware(...middlewares),
     reduxDevToolsHookEnhancer() // for development only
   ];
