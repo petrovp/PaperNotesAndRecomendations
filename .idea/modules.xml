@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BrkoServiceJava.iml" filepath="$PROJECT_DIR$/BrkoServiceJava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/com.brko.iml" filepath="$PROJECT_DIR$/com.brko.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PaperNotesAndRecomendationsService/com.brko.service.iml" filepath="$PROJECT_DIR$/PaperNotesAndRecomendationsService/com.brko.service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PaperNotesAndRecomendationsWeb/com.brko.web.iml" filepath="$PROJECT_DIR$/PaperNotesAndRecomendationsWeb/com.brko.web.iml" />
     </modules>
   </component>
 </project>
