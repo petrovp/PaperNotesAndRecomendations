@@ -13,6 +13,7 @@ import Demo from './demo/ui/Demo';
 import Home from './moduls/home/Home';
 import Login from './moduls/login/Login';
 import Register from './moduls/registration/Register';
+import Notes from './moduls/notes/Notes'
 
 const store = configureStore(browserHistory);
 const appRootUrl = "/";
@@ -32,7 +33,7 @@ class App extends React.Component{
                         <Route path={appRootUrl + "demo"} component={Demo}/>
                         <Route path={appRootUrl + "login"} component={Login}/>
                         <Route path={appRootUrl + "register"} component={Register}/>
-
+                        <Route path={appRootUrl + "notes"} component={Notes}/>
                     </Route>
                 </Router>
             </Provider>

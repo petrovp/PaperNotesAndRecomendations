@@ -22,3 +22,7 @@ function loginRequestReducer(state, action) {
         token:action.data.token
     });
 }
+
+export function getTokenFromState(state) {
+    return state.common.token;
+}

@@ -17,7 +17,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     protected Class<?>[] getServletConfigClasses() {
         return new Class<?>[]{
-            MvcConfig.class
+            ServletConfig.class
         };
     }
 

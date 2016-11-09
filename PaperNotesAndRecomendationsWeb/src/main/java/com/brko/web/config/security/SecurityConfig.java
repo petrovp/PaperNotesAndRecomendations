@@ -1,7 +1,6 @@
 package com.brko.web.config.security;
 
 import com.brko.service.persistance.datamodel.AuthoritiesConstants;
-import com.brko.web.config.security.interceptors.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,7 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 
 /**
  * Spring security configuration.
@@ -34,9 +32,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private TokenProvider tokenProvider;
 
-    @Autowired
-    private CorsFilter corsFilter;
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         System.out.println("Configuring authenticaion manager with user details service");
@@ -48,22 +43,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         System.out.println("Configuring http security");
 
         http
-                .addFilterBefore(corsFilter, ChannelProcessingFilter.class)
                 .exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint)
                 .and()
                 .csrf()
-                .disable()
+                    .disable()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/register/**").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/demo").permitAll()
-                .anyRequest().hasAnyAuthority(AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN)
-                .and()
-                .apply(securityConfigurerAdapter());
+                    .antMatchers("/register/**").permitAll()
+                    .antMatchers("/login").permitAll()
+                    .antMatchers("/demo").permitAll()
+                    .anyRequest()
+                        .hasAnyAuthority(AuthoritiesConstants.USER, AuthoritiesConstants.ADMIN)
+                        .and()
+                        .apply(securityConfigurerAdapter());
     }
 
     @Bean

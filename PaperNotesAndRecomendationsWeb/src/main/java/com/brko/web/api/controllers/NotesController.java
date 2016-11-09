@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by ppetrov on 11/3/2016.
  */
-@RestController
+@RestController(value = "/notes")
 public class NotesController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class NotesController {
     @Autowired
     private NotesService notesService;
 
-    @RequestMapping(value = "/notes", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Note> getNotes() {
         User user = userProvider.getUser();
 
@@ -48,5 +48,4 @@ public class NotesController {
         return notesService.getNotesByYUser(user);
     }
 
-    
 }

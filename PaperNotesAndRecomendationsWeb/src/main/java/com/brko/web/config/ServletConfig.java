@@ -1,8 +1,10 @@
 package com.brko.web.config;
 
 import com.brko.web.api.ApiScanMarker;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
@@ -10,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.*;
 @ComponentScan(basePackageClasses = {
     ApiScanMarker.class
 })
-public class MvcConfig extends WebMvcConfigurerAdapter {
+public class ServletConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -31,7 +33,15 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        super.addCorsMappings(registry);
-        registry.addMapping("/**/demo/**");
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:8082")
+                .allowedHeaders("x-auth-token");
+    }
+
+    @Bean(name = "multipartResolver")
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver resolver=new CommonsMultipartResolver();
+        resolver.setDefaultEncoding("utf-8");
+        return resolver;
     }
 }
