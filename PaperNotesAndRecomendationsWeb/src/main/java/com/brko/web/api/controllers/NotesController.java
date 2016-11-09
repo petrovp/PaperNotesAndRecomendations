@@ -5,17 +5,16 @@ import com.brko.service.persistance.datamodel.User;
 import com.brko.service.services.notes.NotesService;
 import com.brko.web.config.security.UserProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
  * Created by ppetrov on 11/3/2016.
  */
-@RestController(value = "/notes")
+@CrossOrigin
+@RestController
+@RequestMapping(value = "/notes")
 public class NotesController {
 
     @Autowired
@@ -33,11 +32,11 @@ public class NotesController {
 
     @RequestMapping(value = "/add_note", method = RequestMethod.POST)
     public List<Note> saveNote(@RequestBody String text) {
-        User user = userProvider.getUser();
+        User authenticatedUser = userProvider.getUser();
 
-        notesService.saveNote(text, user);
+        notesService.saveNote(text, authenticatedUser);
 
-        return notesService.getNotesByYUser(user);
+        return notesService.getNotesByYUser(authenticatedUser);
     }
 
     @RequestMapping(value = "/edit_note", method = RequestMethod.POST)

@@ -1,6 +1,8 @@
 package com.brko.web.config.security;
 
 import com.brko.service.persistance.datamodel.User;
+import com.brko.service.persistance.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -11,9 +13,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserProvider {
 
+    @Autowired
+    private UserRepository userRepository;
+
     public User getUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User principal = (User) authentication.getPrincipal();
-        return principal;
+
+        org.springframework.security.core.userdetails.User principal =
+                (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
+
+        return userRepository.findByEmail(principal.getUsername());
     }
 }

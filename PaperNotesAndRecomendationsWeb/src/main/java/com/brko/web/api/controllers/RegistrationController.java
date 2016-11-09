@@ -4,14 +4,12 @@ import com.brko.service.persistance.datamodel.User;
 import com.brko.service.services.user.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by ppetrov on 10/8/2016.
  */
+@CrossOrigin
 @RestController
 public class RegistrationController {
 

@@ -31,13 +31,6 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
                 .addResourceLocations("classpath:/static/");
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("http://localhost:8082")
-                .allowedHeaders("x-auth-token");
-    }
-
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver resolver=new CommonsMultipartResolver();
