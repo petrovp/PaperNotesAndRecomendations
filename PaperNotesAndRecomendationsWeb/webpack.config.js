@@ -5,6 +5,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 var appRoot = 'src/main/js';
 
@@ -44,6 +45,11 @@ var config = {
                 ])
             },
             {
+                test: /(\.scss|\.css)$/,
+                loader: ExtractTextPlugin
+                    .extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass')
+            },
+            {
                 test: /\.html$/,
                 loader: 'raw-loader'
             }
@@ -51,11 +57,13 @@ var config = {
     },
 
     resolve: {
-        extensions: ['', '.js', '.jsx'],
+        extensions: ['', '.js', '.jsx', '.scss', '.css'],
         root: [
             path.join(__dirname, appRoot, 'app'),
         ]
     },
+
+    postcss: [autoprefixer],
 
     plugins: [
         new ExtractTextPlugin('[name].css'),

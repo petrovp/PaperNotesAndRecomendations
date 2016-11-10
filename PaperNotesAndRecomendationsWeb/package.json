@@ -1,7 +1,7 @@
 {
   "name": "brko-webpack",
   "version": "0.0.1",
-  "description": "Frontend application for notes writing and paper suggesting application.",
+  "description": "Frontend application for notes writing and paper suggesting.",
   "private": "false",
   "author": "petrovp",
   "main": "src/main/js/app/index.js",
@@ -16,11 +16,15 @@
   "dependencies": {
     "babel-runtime": "6.11.6",
     "classnames": "2.2.5",
+    "css-loader": "~0.23.1",
     "dateformat": "1.0.12",
     "html-entities": "1.2.0",
+    "immutability-helper": "^2.0.0",
     "lodash": "4.16.2",
+    "node-sass": "~3.8.0",
     "rc-checkbox": "^1.4.2",
     "react": "15.3.2",
+    "react-addons-css-transition-group": "^15.3.2",
     "react-bootstrap": "^0.30.5",
     "react-custom-scrollbars": "4.0.0",
     "react-dom": "15.3.2",
@@ -28,9 +32,12 @@
     "react-redux": "4.4.5",
     "react-router": "2.8.1",
     "react-router-redux": "4.0.6",
+    "react-toolbox": "^1.2.5",
     "redux": "3.6.0",
     "redux-persist": "^4.0.0-alpha7",
     "redux-thunk": "2.1.0",
+    "sass-loader": "~4.0.0",
+    "style-loader": "~0.13.1",
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
