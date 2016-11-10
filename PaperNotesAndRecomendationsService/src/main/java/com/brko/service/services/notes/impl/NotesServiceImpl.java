@@ -34,7 +34,6 @@ public class NotesServiceImpl implements NotesService {
     }
 
     public void editNote(Note newOne) {
-
         Note oldOne = notesRepository.findOne(newOne.getId());
 
         oldOne.setText(newOne.getText());

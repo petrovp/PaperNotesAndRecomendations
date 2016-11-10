@@ -5,6 +5,8 @@ import {
 } from '../../services/http'
 
 export const SUCCESSFUL_NOTE_SAVING = 'BRKO@LOGIN_MODULE.SUCCESSFUL_NOTE_SAVING';
+export const SUCCESSFUL_NOTE_FETCHING = 'BRKO@LOGIN_MODULE.SUCCESSFUL_NOTE_FETCHING';
+
 
 function successfulSaveNoteRequest(data) {
     console.log(data);
@@ -14,8 +16,15 @@ function successfulSaveNoteRequest(data) {
     }
 }
 
+function successfulGetNoteRequest(data) {
+    console.log(data);
+    return {
+        type: SUCCESSFUL_NOTE_FETCHING,
+        data
+    }
+}
+
 export function saveNoteRequest(noteText, token) {
-    console.log(noteText, token);
     return dispatch => {
         fetch('http://localhost:8080/notes/add_note', {
             method: 'POST',
@@ -30,6 +39,24 @@ export function saveNoteRequest(noteText, token) {
             .then(parseJSON)
             .then(data => {
                 dispatch(successfulSaveNoteRequest(data));
+            });
+    };
+}
+
+export function asyncFetchNotes(token) {
+    return dispatch => {
+        fetch('http://localhost:8080/notes/all', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'x-auth-token': token
+            }
+        })
+            .then(checkStatus)
+            .then(parseJSON)
+            .then(data => {
+                dispatch(successfulGetNotesRequest(data));
             });
     };
 }
