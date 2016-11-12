@@ -18,6 +18,10 @@ import {
     getTokenFromState
 } from './../login/loginReducer'
 
+import {
+    getNotesFromState
+} from './notesReducer'
+
 class Notes extends React.Component {
 
     constructor(props) {
@@ -26,16 +30,14 @@ class Notes extends React.Component {
     }
 
     componentDidMount() {
-        this.props.asyncFetchNotes(this.props.token);
+        this.props.asyncFetchNotes();
     }
 
     render() {
 
         const {
-            token,
             saveNoteRequest,
-            notes,
-            asyncFetchNotes,
+            notes
         } = this.props;
 
         const handleChange = (e) => {
@@ -91,12 +93,10 @@ Notes.propTypes = {
     saveNoteRequest: React.PropTypes.func,
     notes: React.PropTypes.array,
     asyncFetchNotes: React.PropTypes.func,
-    token: React.PropTypes.String
 };
 
 function mapStateToProps(state) {
     return {
-        token: getTokenFromState(state),
         notes: getNotesFromState(state)
     };
 }

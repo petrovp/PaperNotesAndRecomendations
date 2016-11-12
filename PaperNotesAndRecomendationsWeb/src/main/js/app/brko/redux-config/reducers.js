@@ -14,7 +14,7 @@ export const rootReducer = combineReducers({
   demo: demoReducer(),
   registration: registrationReducer(),
   common:loginReducer(),
-  notes: notesReducer(),
+  notes_state: notesReducer(),
   routing: routerReducer
 });
 

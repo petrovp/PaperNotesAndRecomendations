@@ -19,13 +19,17 @@ export default function notesReducer() {
 }
 
 function noteSavingReducer(state, action) {
-
+    return Object.assign({}, state, {
+        notes:action.data
+    });
 }
 
 function noteFetchingReducer(state, action) {
-
+    return Object.assign({}, state, {
+        notes:action.data
+    });
 }
 
 export function getNotesFromState(state) {
-    return state.notes;
+    return state.notes_state.notes;
 }

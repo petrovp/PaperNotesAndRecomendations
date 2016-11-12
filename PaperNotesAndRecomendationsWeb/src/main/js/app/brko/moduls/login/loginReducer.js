@@ -9,11 +9,22 @@ import {
 import initialState from './initialLoginState';
 
 import { callReducerByMapping } from '../../redux-config/reducers';
+import { loadUserTokenFromLocalStorage } from './../../services/local_storage_service'
 
 export default function loginReducer() {
+    getAuthTokenIfExist();
+
     return  callReducerByMapping({
         [LOGIN_RESPONSE]: loginRequestReducer
     }, initialState);
+}
+
+function getAuthTokenIfExist() {
+    const token = loadUserTokenFromLocalStorage();
+    if (token) {
+        initialState.token = token;
+    }
+    return token;
 }
 
 function loginRequestReducer(state, action) {
