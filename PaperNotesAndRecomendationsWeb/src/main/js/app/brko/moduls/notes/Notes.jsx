@@ -61,8 +61,8 @@ class Notes extends React.Component {
                     />
                     <CardText>{note.text}</CardText>
                     <CardActions >
-                        <Button label="Action 1" />
-                        <Button label="Action 2" />
+                        <Button bsStyle="primary" > Edit </Button>
+                        <Button bsStyle="primary" > Share </Button>
                     </CardActions>
                 </Card>
             )

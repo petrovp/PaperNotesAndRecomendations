@@ -1,10 +1,10 @@
 package com.brko.service.ml.service.impl;
 
+import com.brko.service.ml.models.Word2Vec;
 import com.brko.service.ml.service.TextComparatorService;
 import com.google.common.collect.Lists;
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.process.DocumentPreprocessor;
-import org.deeplearning4j.models.word2vec.Word2Vec;
 import org.springframework.stereotype.Service;
 
 import java.io.StringReader;
@@ -19,14 +19,23 @@ public class TextComparatorServiceImpl implements TextComparatorService {
 
     private Word2Vec word2VecModel;
 
-    public double computeSimilarity(String firstText, String secondText) {
+    public double computeSimilarity(String paperText, String noteText) {
 
-        List<String> firstTextWords = getWordsFromText(firstText);
-        List<String> secondTextWords = getWordsFromText(secondText);
+        List<String> paperWords = getWordsFromText(paperText);
+        List<String> noteWords = getWordsFromText(noteText);
 
-        double similarity = 0.0;
+        double similarity = 1.0;
 
-        // TODO 2016-21-09 ppetrov: make the computation like in "From word embedings to document distances" paper.
+        for (String noteWord : noteWords) {
+            double maxSim = 0.0;
+            for (String paperWord : paperWords) {
+                maxSim = Math.max(maxSim, word2VecModel.similarity(noteWord, paperWord));
+            }
+
+            if (maxSim != 0) {
+                similarity *= maxSim;
+            }
+        }
 
         return similarity;
     }

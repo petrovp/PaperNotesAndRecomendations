@@ -5,5 +5,11 @@ package com.brko.service.ml.service;
  */
 public interface TextComparatorService {
 
-    double computeSimilarity(String text1, String text2);
+    /**
+     * Computes the similarity between a text from paper and note with word2vec.
+     * @param paperText the text from Paper
+     * @param noteText the text from Note
+     * @return the similarity
+     */
+    double computeSimilarity(String paperText, String noteText);
 }

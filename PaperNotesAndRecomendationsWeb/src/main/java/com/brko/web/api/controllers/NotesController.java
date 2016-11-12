@@ -27,7 +27,7 @@ public class NotesController {
     public List<Note> getNotes() {
         User user = userProvider.getUser();
 
-        return notesService.getNotesByYUser(user);
+        return notesService.getNotesByUser(user);
     }
 
     @RequestMapping(value = "/add_note", method = RequestMethod.POST)
@@ -36,7 +36,7 @@ public class NotesController {
 
         notesService.saveNote(text, authenticatedUser);
 
-        return notesService.getNotesByYUser(authenticatedUser);
+        return notesService.getNotesByUser(authenticatedUser);
     }
 
     @RequestMapping(value = "/edit_note", method = RequestMethod.POST)
@@ -44,7 +44,7 @@ public class NotesController {
         notesService.editNote(note);
 
         User user = userProvider.getUser();
-        return notesService.getNotesByYUser(user);
+        return notesService.getNotesByUser(user);
     }
 
 }

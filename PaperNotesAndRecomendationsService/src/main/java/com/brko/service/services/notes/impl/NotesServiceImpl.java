@@ -19,7 +19,7 @@ public class NotesServiceImpl implements NotesService {
     @Autowired
     private NotesRepository notesRepository;
 
-    public List<Note> getNotesByYUser(User user) {
+    public List<Note> getNotesByUser(User user) {
         List<Note> notesByUser = notesRepository.findByCreatedBy(user);
         return notesByUser;
     }

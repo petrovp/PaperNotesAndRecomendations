@@ -8,6 +8,76 @@
             <set />
           </value>
         </entry>
+        <entry key="/a.dummy">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/models/PaperSummaryAndNoteSimilarity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/models/PaperSummaryRankingsForUser.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/models/PaperSummaryScoreForUser.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/service/PaperSuggestionsService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/service/TextComparatorService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/service/impl/PaperSuggestionsServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/service/impl/TextComparatorServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsWeb/src/main/java/com/brko/web/config/security/SecurityConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsWeb/src/main/js/app/brko/moduls/login/Login.jsx">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsWeb/src/main/js/app/brko/moduls/login/loginActions.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsWeb/src/main/js/app/brko/moduls/notes/Notes.jsx">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsWeb/src/main/js/app/brko/moduls/notes/notesActions.js">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsWeb/src/main/js/app/brko/services/http.js">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/pom.xml">
           <value>
             <set />

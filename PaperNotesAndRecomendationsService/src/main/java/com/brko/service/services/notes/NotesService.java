@@ -15,7 +15,7 @@ public interface NotesService {
      * @param user the User
      * @return List of notes.
      */
-    public List<Note> getNotesByYUser(User user);
+    public List<Note> getNotesByUser(User user);
 
     /**
      * Save note for specific user.
