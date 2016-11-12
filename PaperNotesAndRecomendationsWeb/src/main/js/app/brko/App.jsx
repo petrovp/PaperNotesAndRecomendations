@@ -20,11 +20,11 @@ const appRootUrl = "/";
 
 class App extends React.Component{
 
-    componentWillMount() {
-        persistStore(store);
-    }
-
     render() {
+        store.subscribe(()=>{
+            localStorage.setItem('reduxState_USER_TOKEN', JSON.stringify(store.getState().common.token));
+        });
+
         return (
             <Provider store={store}>
                 <Router history={browserHistory}>
