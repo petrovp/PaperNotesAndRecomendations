@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import * as Actions from './notesActions'
 
@@ -45,12 +46,15 @@ class Notes extends React.Component {
         };
 
         const handleSaveNoteButtonClick = () => {
-            saveNoteRequest(this.noteText, token);
+            saveNoteRequest(this.noteText);
         };
 
         const renderNotes = () =>
             notes.map(note =>
-                <Card style={{width: '350px'}}>
+                <Card
+                    style={{width: '350px'}}
+                    key={note.id}
+                >
                     <CardTitle
                         title="Note"
                         subtitle={note.createdOn}
@@ -82,7 +86,14 @@ class Notes extends React.Component {
                 </Form>
 
                 <div>
-                    {renderNotes()}
+                    <Scrollbars
+                        thumbMinSize={10}
+                        style={{ width: 500, height: 300 }}
+                    >
+                        <div>
+                            {renderNotes()}
+                        </div>
+                    </Scrollbars>
                 </div>
             </div>
         )

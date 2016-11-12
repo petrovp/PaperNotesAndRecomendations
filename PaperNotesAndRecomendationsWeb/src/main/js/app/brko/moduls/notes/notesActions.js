@@ -11,7 +11,6 @@ import {
 export const SUCCESSFUL_NOTE_SAVING = 'BRKO@LOGIN_MODULE.SUCCESSFUL_NOTE_SAVING';
 export const SUCCESSFUL_NOTE_FETCHING = 'BRKO@LOGIN_MODULE.SUCCESSFUL_NOTE_FETCHING';
 
-
 function successfulSaveNoteRequest(data) {
     return {
         type: SUCCESSFUL_NOTE_SAVING,
@@ -27,7 +26,9 @@ function successfulGetNoteRequest(data) {
 }
 
 export function saveNoteRequest(noteText, token) {
-    return dispatch => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const token = getTokenFromState(state);
         fetch('http://localhost:8080/notes/add_note', {
             method: 'POST',
             headers: {
@@ -64,4 +65,3 @@ export function asyncFetchNotes() {
             });
     };
 }
-
