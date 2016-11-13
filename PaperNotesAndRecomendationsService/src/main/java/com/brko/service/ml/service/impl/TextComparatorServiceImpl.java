@@ -84,10 +84,10 @@ public class TextComparatorServiceImpl implements TextComparatorService {
     }
 
     private List<String> getWordsFromText(String text) {
-        DocumentPreprocessor documentPreprocessor1 = new DocumentPreprocessor(new StringReader(text));
+        DocumentPreprocessor documentPreprocessor = new DocumentPreprocessor(new StringReader(text));
 
         List<String> firstTextWords = Lists.newArrayList();
-        for (List<HasWord> sentence : documentPreprocessor1) {
+        for (List<HasWord> sentence : documentPreprocessor) {
             firstTextWords.addAll(getWordsFromSentance(sentence));
         }
         return firstTextWords;

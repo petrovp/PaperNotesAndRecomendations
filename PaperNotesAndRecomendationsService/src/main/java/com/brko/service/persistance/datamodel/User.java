@@ -2,6 +2,8 @@ package com.brko.service.persistance.datamodel;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 /**
  * Created by ppetrov on 9/25/2016.
  */
@@ -17,6 +19,8 @@ public class User extends NamedDocument {
     private String lastName;
 
     private Authority authority;
+
+    private List<PaperSummary> suggestedPapers;
 
     public String getPassword() {
         return password;
@@ -56,5 +60,13 @@ public class User extends NamedDocument {
 
     public void setAuthority(Authority authority) {
         this.authority = authority;
+    }
+
+    public List<PaperSummary> getSuggestedPapers() {
+        return suggestedPapers;
+    }
+
+    public void setSuggestedPapers(List<PaperSummary> suggestedPapers) {
+        this.suggestedPapers = suggestedPapers;
     }
 }
