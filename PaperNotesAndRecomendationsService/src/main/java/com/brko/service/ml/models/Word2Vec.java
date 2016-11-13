@@ -1,9 +1,9 @@
 package com.brko.service.ml.models;
 
-import com.google.common.collect.Lists;
-import org.nd4j.linalg.ops.transforms.Transforms;
+import com.google.common.collect.Maps;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Vector;
 
 /**
  * Simplified Word2Vec model.
@@ -13,6 +13,10 @@ import java.util.*;
 public class Word2Vec {
 
     private Map<String, Vector<Float>> wordVectorMap;
+
+    public Word2Vec() {
+        this.wordVectorMap = Maps.newTreeMap();
+    }
 
     public Map<String, Vector<Float>> getWordVectorMap() {
         return wordVectorMap;

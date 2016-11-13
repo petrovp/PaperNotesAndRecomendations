@@ -1,6 +1,7 @@
 package com.brko.service.persistance.datamodel;
 
 import org.apache.commons.lang3.text.StrBuilder;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @Document(collection = "papers")
 public class PaperSummary extends NamedDocument{
 
+    @Indexed(unique = true)
     private String arxivId;
 
     private String title;

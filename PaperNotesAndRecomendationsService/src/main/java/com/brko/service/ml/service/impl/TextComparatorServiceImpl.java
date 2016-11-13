@@ -5,11 +5,17 @@ import com.brko.service.ml.service.TextComparatorService;
 import com.google.common.collect.Lists;
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.process.DocumentPreprocessor;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.Collection;
 import java.util.List;
+import java.util.zip.ZipFile;
 
 /**
  * Created by ppetrov on 9/20/2016.
@@ -17,7 +23,44 @@ import java.util.List;
 @Service
 public class TextComparatorServiceImpl implements TextComparatorService {
 
+    final Logger logger = Logger.getLogger(this.getClass().getName());
+
     private Word2Vec word2VecModel;
+
+    @PostConstruct
+    public void loadWord2VecModel() {
+        word2VecModel = new Word2Vec();
+
+        try (ZipFile word2VecZip = new ZipFile("C:\\Users\\ppetrov\\Documents\\ppt_private\\diplomska\\word2vec.zip");
+             InputStream inputStream = word2VecZip.getInputStream(word2VecZip.entries().nextElement());
+             BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+
+            String parts [] = br.readLine().split(" ");
+            int numWords = Integer.parseInt(parts[0]);
+            int vectorSize = Integer.parseInt(parts[1]);
+            logger.info(String.format("Loading %s words with vectors. Vector size is %s.", numWords, vectorSize));
+
+            for (int t=0;t<numWords;t++) {
+
+                String line = br.readLine();
+                parts = line.split("<->");
+
+                String word = parts[0];
+
+                String[] vectorParts = parts[1].split(" ");
+                float[] vector = new float[vectorParts.length];
+                for (int i = 0; i < vector.length; i++) {
+                    vector[i] = Float.parseFloat(vectorParts[i]);
+                }
+
+                word2VecModel.addWordVecToModel(word, vector);
+            }
+
+            logger.info("Word2Vec model is loaded.");
+        } catch (Exception e) {
+            logger.error(e);
+        }
+    }
 
     public double computeSimilarity(String paperText, String noteText) {
 

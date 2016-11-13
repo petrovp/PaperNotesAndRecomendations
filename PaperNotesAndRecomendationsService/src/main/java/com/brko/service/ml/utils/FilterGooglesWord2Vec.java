@@ -5,7 +5,10 @@ import org.apache.commons.compress.compressors.gzip.GzipUtils;
 import org.apache.log4j.Logger;
 
 import java.io.*;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.zip.GZIPInputStream;
 
 import static org.deeplearning4j.models.embeddings.loader.WordVectorSerializer.readFloat;
@@ -37,8 +40,14 @@ public class FilterGooglesWord2Vec {
         pw.write(wordVsVector.size()+" ");
         pw.write(GlobalConstants.VECTOR_SIZE+"\n");
         for (Map.Entry<String, float[]> entry : wordVsVector.entrySet()) {
-            pw.write(entry.getKey()+" ");
-            pw.write(Arrays.toString(entry.getValue())+"\n");
+            pw.write(entry.getKey()+"<->");
+
+            float[] vector = entry.getValue();
+            StringBuilder vectorStr = new StringBuilder();
+            for (float f : vector) {
+                vectorStr.append(f+" ");
+            }
+            pw.write(vectorStr.toString() + "\n");
         }
 
         pw.flush();

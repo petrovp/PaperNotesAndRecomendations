@@ -4,6 +4,7 @@ import com.brko.service.ml.BrkoMashineLearningScanMarker;
 import com.brko.service.services.BrkoServiceScanMarker;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @Configuration
 @EnableAspectJAutoProxy(proxyTargetClass = true)
+@EnableScheduling
 @ComponentScan(basePackageClasses = {
     BrkoConfigScanMarker.class,
     BrkoServiceScanMarker.class,

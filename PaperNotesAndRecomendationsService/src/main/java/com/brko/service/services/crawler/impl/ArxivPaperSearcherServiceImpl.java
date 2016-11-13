@@ -3,14 +3,20 @@ package com.brko.service.services.crawler.impl;
 import com.brko.service.GlobalConstants;
 import com.brko.service.persistance.datamodel.PaperSummary;
 import com.brko.service.persistance.repository.PaperSummaryRepository;
-import com.brko.service.services.crawler.exceptions.CrawlingPapersException;
 import com.brko.service.services.crawler.ArxivPaperSearcherService;
 import com.brko.service.services.crawler.PaperSummeryReaderService;
+import com.brko.service.services.crawler.exceptions.CrawlingPapersException;
+import com.google.common.collect.Sets;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Implementation class of {@link ArxivPaperSearcherService}.
@@ -33,6 +39,8 @@ public class ArxivPaperSearcherServiceImpl implements ArxivPaperSearcherService 
     public void searchPapersByMonthAndYearInArxiv(int year, int month)
             throws CrawlingPapersException, IOException {
 
+        Set<String> alreadyCrawled = getCrawledPaperIds();
+
         logger.info("Crawling for " + month + " " +year);
         int numberOfConsistentErrors = 0;
         int consecutiveNumber = 0;
@@ -42,7 +50,12 @@ public class ArxivPaperSearcherServiceImpl implements ArxivPaperSearcherService 
             PaperSummary paperSummary;
 
             try {
-                String url = constructPaperUrl(year, month, consecutiveNumber);
+                String arxivId = getArxivId(year, month, consecutiveNumber);
+                if (alreadyCrawled.contains(arxivId)) {
+                    continue;
+                }
+
+                String url = constructPaperUrl(arxivId);
                 paperSummary = paperSummeryReaderService.readAbstractFromArxivHtml(url);
             } catch (Exception e) {
                 numberOfConsistentErrors++;
@@ -50,9 +63,20 @@ public class ArxivPaperSearcherServiceImpl implements ArxivPaperSearcherService 
             }
 
             numberOfConsistentErrors = 0;
-            savePaperSummaryInTheFileSystem(paperSummary);
+            //savePaperSummaryInTheFileSystem(paperSummary);
             paperSummaryRepository.save(paperSummary);
         }
+    }
+
+    private Set<String> getCrawledPaperIds() {
+        Set<String> ids = Sets.newHashSet();
+
+        List<PaperSummary> all = paperSummaryRepository.findAll();
+        for (PaperSummary paperSummary : all) {
+            ids.add(paperSummary.getArxivId());
+        }
+
+        return ids;
     }
 
     private void savePaperSummaryInTheFileSystem(PaperSummary paperSummary) throws IOException {
@@ -68,10 +92,12 @@ public class ArxivPaperSearcherServiceImpl implements ArxivPaperSearcherService 
         bufferedOutputStream.close();
     }
 
-    private String constructPaperUrl(int year, int month, int consecutiveNumber) {
+    private String constructPaperUrl(String arxivId) {
+        return String.format("%s/%s", GlobalConstants.ARXIV_ABSTRACTS_BASE_URL, arxivId);
+    }
 
-        return String.format("%s/%02d%02d.%05d",
-                GlobalConstants.ARXIV_ABSTRACTS_BASE_URL,
+    private String getArxivId(int year, int month, int consecutiveNumber) {
+        return String.format("%02d%02d.%05d",
                 year % 100,
                 month,
                 consecutiveNumber);
