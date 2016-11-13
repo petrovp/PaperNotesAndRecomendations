@@ -13,6 +13,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/.idea/compiler.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/config/BrkoServiceConfiguration.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/models/PaperSummaryAndNoteSimilarity.java">
           <value>
             <set />
@@ -24,6 +39,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/models/PaperSummaryScoreForUser.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/models/Word2Vec.java">
           <value>
             <set />
           </value>
@@ -44,6 +64,26 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/service/impl/TextComparatorServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/utils/FilterGooglesWord2Vec.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/persistance/datamodel/PaperSummary.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/services/crawler/CrawlingScheduledJob.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/services/crawler/impl/ArxivPaperSearcherServiceImpl.java">
           <value>
             <set />
           </value>

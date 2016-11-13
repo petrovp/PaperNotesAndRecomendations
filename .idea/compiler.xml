@@ -28,10 +28,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="BrkoServiceJava" target="1.5" />
-      <module name="com.brko" target="1.5" />
-      <module name="com.brko.service" target="1.5" />
-      <module name="com.brko.web" target="1.5" />
+      <module name="com.brko" target="1.7" />
+      <module name="com.brko.service" target="1.7" />
+      <module name="com.brko.web" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
