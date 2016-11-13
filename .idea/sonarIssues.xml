@@ -48,12 +48,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/service/PaperSuggestionsComputerService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/service/PaperSuggestionsService.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/service/TextComparatorService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/ml/service/impl/PaperSuggestionsComputerServiceImpl.java">
           <value>
             <set />
           </value>
@@ -78,12 +88,42 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/persistance/datamodel/User.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/services/crawler/CrawlingScheduledJob.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/services/crawler/impl/ArxivPaperSearcherServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/services/papers/ComputeSuggestedPapersScheduledJob.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/services/papers/PaperSummaryService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/services/papers/impl/PaperSimmaryServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/main/java/com/brko/service/services/papers/impl/PaperSummaryServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PaperNotesAndRecomendationsService/src/test/java/com/brko/service/services/ServiceConfigurationTest.java">
           <value>
             <set />
           </value>
