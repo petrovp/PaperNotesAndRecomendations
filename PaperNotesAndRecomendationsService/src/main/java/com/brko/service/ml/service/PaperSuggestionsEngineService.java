@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by ppetrov on 11/12/2016.
  */
-public interface PaperSuggestionsComputerService {
+public interface PaperSuggestionsEngineService {
 
     /**
      * Compute score for papers on specific user and returns the best 100.

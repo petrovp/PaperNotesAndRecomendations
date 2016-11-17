@@ -1,5 +1,6 @@
-package com.brko.service.services.crawler;
+package com.brko.service.services.jobs;
 
+import com.brko.service.services.crawler.ArxivPaperSearcherService;
 import com.brko.service.services.crawler.exceptions.CrawlingPapersException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

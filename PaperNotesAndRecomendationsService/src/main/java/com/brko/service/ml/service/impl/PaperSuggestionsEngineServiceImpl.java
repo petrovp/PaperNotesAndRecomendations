@@ -2,7 +2,7 @@ package com.brko.service.ml.service.impl;
 
 import com.brko.service.ml.models.PaperSummaryAndNoteSimilarity;
 import com.brko.service.ml.models.PaperSummaryScoreForUser;
-import com.brko.service.ml.service.PaperSuggestionsComputerService;
+import com.brko.service.ml.service.PaperSuggestionsEngineService;
 import com.brko.service.ml.service.TextComparatorService;
 import com.brko.service.persistance.datamodel.Note;
 import com.brko.service.persistance.datamodel.PaperSummary;
@@ -23,7 +23,7 @@ import java.util.Map;
  * Created by ppetrov on 11/12/2016.
  */
 @Service
-public class PaperSuggestionsComputerServiceImpl implements PaperSuggestionsComputerService {
+public class PaperSuggestionsEngineServiceImpl implements PaperSuggestionsEngineService {
 
     final Logger logger = Logger.getLogger(this.getClass().getName());
 

@@ -3,6 +3,7 @@ package com.brko.service.services.notes.impl;
 import com.brko.service.persistance.datamodel.Note;
 import com.brko.service.persistance.datamodel.User;
 import com.brko.service.persistance.repository.NotesRepository;
+import com.brko.service.services.jobs.ComputationThreadCreator;
 import com.brko.service.services.notes.NotesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ public class NotesServiceImpl implements NotesService {
     @Autowired
     private NotesRepository notesRepository;
 
+    @Autowired
+    private ComputationThreadCreator computationThreadCreator;
+
     public void saveNote(String text, User user) {
         Note noteForSaving = new Note();
         noteForSaving.setText(text);
@@ -26,6 +30,8 @@ public class NotesServiceImpl implements NotesService {
         noteForSaving.setCreatedOn(new Date());
 
         notesRepository.save(noteForSaving);
+
+        computationThreadCreator.runSuggestionsForUserOnAddedNote(user);
     }
 
     public void editNote(Note newOne) {

@@ -1,6 +1,6 @@
-package com.brko.service.services.papers;
+package com.brko.service.services.jobs;
 
-import com.brko.service.ml.service.PaperSuggestionsComputerService;
+import com.brko.service.ml.service.PaperSuggestionsEngineService;
 import com.brko.service.persistance.datamodel.PaperSummary;
 import com.brko.service.persistance.datamodel.User;
 import com.brko.service.persistance.repository.PaperSummaryRepository;
@@ -27,7 +27,7 @@ public class ComputeSuggestedPapersScheduledJob {
     private PaperSummaryRepository paperSummaryRepository;
 
     @Autowired
-    private PaperSuggestionsComputerService paperSuggestionsComputerService;
+    private PaperSuggestionsEngineService paperSuggestionsEngineService;
 
     @Scheduled(cron = "0 0 0 * * *")
     public void preComputeSuggestionsForAllUsers() {
@@ -39,7 +39,8 @@ public class ComputeSuggestedPapersScheduledJob {
 
         for (User user : allUsers) {
             try {
-                List<PaperSummary> suggestedPapers = paperSuggestionsComputerService.computeSuggestedPapers(user, allSummaries);
+                List<PaperSummary> suggestedPapers =
+                        paperSuggestionsEngineService.computeSuggestedPapers(user, allSummaries);
                 user.setSuggestedPapers(suggestedPapers);
             } catch (RuntimeException e) {
                 logger.error(e);
