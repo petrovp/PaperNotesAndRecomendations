@@ -40,7 +40,16 @@ public class PaperSuggestionsComputerServiceImpl implements PaperSuggestionsComp
 
     public List<PaperSummary> computeSuggestedPapers(User user, List<PaperSummary> allPaperSummaries) {
 
-        List<Note> notesByUser = notesService.getNotesByUser(user);
+        User userForSearch = new User();
+        userForSearch.setId(user.getId());
+        userForSearch.setAuthority(user.getAuthority());
+        userForSearch.setEmail(user.getEmail());
+        userForSearch.setPassword(user.getPassword());
+        userForSearch.setName(user.getName());
+        userForSearch.setFirstName(user.getFirstName());
+        userForSearch.setLastName(user.getLastName());
+
+        List<Note> notesByUser = notesService.getNotesByUser(userForSearch);
 
         Map<PaperSummary, PaperSummaryScoreForUser> paperSummaryWithScoresMap = Maps.newHashMap();
         for (PaperSummary paperSummary : allPaperSummaries) {

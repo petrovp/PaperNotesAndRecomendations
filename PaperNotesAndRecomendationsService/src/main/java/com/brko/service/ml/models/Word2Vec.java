@@ -15,7 +15,7 @@ public class Word2Vec {
     private Map<String, Vector<Float>> wordVectorMap;
 
     public Word2Vec() {
-        this.wordVectorMap = Maps.newTreeMap();
+        this.wordVectorMap = Maps.newHashMap();
     }
 
     public Map<String, Vector<Float>> getWordVectorMap() {
