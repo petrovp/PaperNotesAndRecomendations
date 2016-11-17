@@ -19,11 +19,6 @@ public class NotesServiceImpl implements NotesService {
     @Autowired
     private NotesRepository notesRepository;
 
-    public List<Note> getNotesByUser(User user) {
-        List<Note> notesByUser = notesRepository.findByCreatedBy(user);
-        return notesByUser;
-    }
-
     public void saveNote(String text, User user) {
         Note noteForSaving = new Note();
         noteForSaving.setText(text);
@@ -39,5 +34,10 @@ public class NotesServiceImpl implements NotesService {
         oldOne.setText(newOne.getText());
 
         notesRepository.save(oldOne);
+    }
+
+    @Override
+    public List<Note> getNotesByUserEmail(String email) {
+        return notesRepository.findByCreatedBy_Email(email);
     }
 }

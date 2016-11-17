@@ -11,13 +11,6 @@ import java.util.List;
 public interface NotesService {
 
     /**
-     * Returns all notes for user.
-     * @param user the User
-     * @return List of notes.
-     */
-    public List<Note> getNotesByUser(User user);
-
-    /**
      * Save note for specific user.
      * @param text note value
      * @param user user
@@ -29,4 +22,11 @@ public interface NotesService {
      * @param note new note content
      */
     void editNote(Note note);
+
+    /**
+     * Return notes for user with specific email.
+     * @param email the Email
+     * @return List of notes
+     */
+    List<Note> getNotesByUserEmail(String email);
 }

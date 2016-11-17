@@ -13,4 +13,5 @@ public interface NotesRepository extends MongoRepository <Note, String> {
 
     List<Note> findByCreatedBy(User user);
 
+    List<Note> findByCreatedBy_Email(String email);
 }

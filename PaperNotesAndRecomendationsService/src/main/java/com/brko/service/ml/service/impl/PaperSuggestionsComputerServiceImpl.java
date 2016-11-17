@@ -49,7 +49,7 @@ public class PaperSuggestionsComputerServiceImpl implements PaperSuggestionsComp
         userForSearch.setFirstName(user.getFirstName());
         userForSearch.setLastName(user.getLastName());
 
-        List<Note> notesByUser = notesService.getNotesByUser(userForSearch);
+        List<Note> notesByUser = notesService.getNotesByUserEmail(user.getEmail());
 
         Map<PaperSummary, PaperSummaryScoreForUser> paperSummaryWithScoresMap = Maps.newHashMap();
         for (PaperSummary paperSummary : allPaperSummaries) {
