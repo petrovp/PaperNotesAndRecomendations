@@ -6,6 +6,7 @@ import com.brko.service.ml.service.TextComparatorService;
 import com.google.common.collect.Lists;
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.process.DocumentPreprocessor;
+import org.apache.commons.lang.BooleanUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 
 /**
@@ -92,18 +94,15 @@ public class TextComparatorServiceImpl implements TextComparatorService {
         for (List<HasWord> sentence : documentPreprocessor) {
             firstTextWords.addAll(getWordsFromSentance(sentence));
         }
-        return firstTextWords;
+
+        return firstTextWords.stream().distinct().collect(Collectors.toList());
     }
 
     private Collection<? extends String> getWordsFromSentance(List<HasWord> sentence) {
-        List<String> sentanceWords = Lists.newArrayList();
-        for (HasWord hasWord : sentence) {
-            if (PfspStopWords.isStopWord(hasWord.word())) {
-                continue;
-            }
-
-            sentanceWords.add(hasWord.word().toLowerCase());
-        }
-        return sentanceWords;
+        return sentence
+                .stream()
+                .filter(hasWord -> BooleanUtils.isFalse(PfspStopWords.isStopWord(hasWord.word())))
+                .map(HasWord::word)
+                .collect(Collectors.toList());
     }
 }

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by ppetrov on 11/12/2016.
@@ -74,11 +75,10 @@ public class PaperSuggestionsEngineServiceImpl implements PaperSuggestionsEngine
         List<PaperSummaryScoreForUser> scoresForUser = Lists.newArrayList(paperSummaryWithScoresMap.values());
         Collections.sort(scoresForUser);
 
-        List<PaperSummary> rankedSummaries = Lists.newArrayList();
-        for (PaperSummaryScoreForUser paperSummaryScoreForUser : scoresForUser) {
-            rankedSummaries.add(paperSummaryScoreForUser.getPaperSummary());
-        }
-
-        return rankedSummaries.subList(0, 100);
+        return scoresForUser
+                .stream()
+                .map(PaperSummaryScoreForUser::getPaperSummary)
+                .collect(Collectors.toList())
+                .subList(0, 100);
     }
 }
