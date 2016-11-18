@@ -40,15 +40,6 @@ public class PaperSuggestionsEngineServiceImpl implements PaperSuggestionsEngine
 
     public List<PaperSummary> computeSuggestedPapers(User user, List<PaperSummary> allPaperSummaries) {
 
-        User userForSearch = new User();
-        userForSearch.setId(user.getId());
-        userForSearch.setAuthority(user.getAuthority());
-        userForSearch.setEmail(user.getEmail());
-        userForSearch.setPassword(user.getPassword());
-        userForSearch.setName(user.getName());
-        userForSearch.setFirstName(user.getFirstName());
-        userForSearch.setLastName(user.getLastName());
-
         List<Note> notesByUser = notesService.getNotesByUserEmail(user.getEmail());
 
         Map<PaperSummary, PaperSummaryScoreForUser> paperSummaryWithScoresMap = Maps.newHashMap();
