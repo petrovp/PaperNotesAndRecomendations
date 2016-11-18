@@ -72,14 +72,10 @@ public class PaperSuggestionsEngineServiceImpl implements PaperSuggestionsEngine
                 }
             }
 
-            Collections.sort(similarities);
-            for (int i = 0; i < HOW_MANY_PAPERS_TO_INCLUDE_IN_WHOLE_SCORE; i++) {
-                PaperSummaryAndNoteSimilarity nextMostSimilar = similarities.get(i);
-
-                int score = HOW_MANY_PAPERS_TO_INCLUDE_IN_WHOLE_SCORE - i;
+            for (PaperSummaryAndNoteSimilarity similarity : similarities) {
                 PaperSummaryScoreForUser paperSummaryScoreForUser =
-                        paperSummaryWithScoresMap.get(nextMostSimilar.getPaperSummary());
-                double newScore = score + paperSummaryScoreForUser.getScore();
+                        paperSummaryWithScoresMap.get(similarity.getPaperSummary());
+                double newScore = similarity.getSimilarity() + paperSummaryScoreForUser.getScore();
                 paperSummaryScoreForUser.setScore(newScore);
             }
         }
@@ -92,6 +88,6 @@ public class PaperSuggestionsEngineServiceImpl implements PaperSuggestionsEngine
             rankedSummaries.add(paperSummaryScoreForUser.getPaperSummary());
         }
 
-        return rankedSummaries.subList(0, 50);
+        return rankedSummaries.subList(0, 100);
     }
 }
