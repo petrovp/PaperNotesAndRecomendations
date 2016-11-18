@@ -71,12 +71,9 @@ public class TextComparatorServiceImpl implements TextComparatorService {
         double similarity = 1.0;
 
         for (String noteWord : noteWords) {
-            if (PfspStopWords.isStopWord(noteWord)) continue;
-
             double maxSim = 0.0;
-            for (String paperWord : paperWords) {
-                if (PfspStopWords.isStopWord(paperWord)) continue;
 
+            for (String paperWord : paperWords) {
                 maxSim = Math.max(maxSim, pfspWord2VecModel.similarity(noteWord, paperWord));
             }
 
@@ -101,6 +98,10 @@ public class TextComparatorServiceImpl implements TextComparatorService {
     private Collection<? extends String> getWordsFromSentance(List<HasWord> sentence) {
         List<String> sentanceWords = Lists.newArrayList();
         for (HasWord hasWord : sentence) {
+            if (PfspStopWords.isStopWord(hasWord.word())) {
+                continue;
+            }
+
             sentanceWords.add(hasWord.word());
         }
         return sentanceWords;
