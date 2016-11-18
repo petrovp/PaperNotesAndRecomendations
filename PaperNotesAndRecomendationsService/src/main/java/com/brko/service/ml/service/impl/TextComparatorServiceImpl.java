@@ -1,6 +1,6 @@
 package com.brko.service.ml.service.impl;
 
-import com.brko.service.ml.models.Word2Vec;
+import com.brko.service.ml.models.PfspWord2Vec;
 import com.brko.service.ml.service.TextComparatorService;
 import com.google.common.collect.Lists;
 import edu.stanford.nlp.ling.HasWord;
@@ -25,11 +25,11 @@ public class TextComparatorServiceImpl implements TextComparatorService {
 
     final Logger logger = Logger.getLogger(this.getClass().getName());
 
-    private Word2Vec word2VecModel;
+    private PfspWord2Vec pfspWord2VecModel;
 
     @PostConstruct
     public void loadWord2VecModel() {
-        word2VecModel = new Word2Vec();
+        pfspWord2VecModel = new PfspWord2Vec();
 
         try (ZipFile word2VecZip = new ZipFile("C:\\Users\\ppetrov\\Documents\\ppt_private\\diplomska\\word2vec.zip");
              InputStream inputStream = word2VecZip.getInputStream(word2VecZip.entries().nextElement());
@@ -53,10 +53,10 @@ public class TextComparatorServiceImpl implements TextComparatorService {
                     vector[i] = Float.parseFloat(vectorParts[i]);
                 }
 
-                word2VecModel.addWordVecToModel(word, vector);
+                pfspWord2VecModel.addWordVecToModel(word, vector);
             }
 
-            logger.info("Word2Vec model is loaded.");
+            logger.info("PfspWord2Vec model is loaded.");
         } catch (Exception e) {
             logger.error(e);
         }
@@ -72,7 +72,7 @@ public class TextComparatorServiceImpl implements TextComparatorService {
         for (String noteWord : noteWords) {
             double maxSim = 0.0;
             for (String paperWord : paperWords) {
-                maxSim = Math.max(maxSim, word2VecModel.similarity(noteWord, paperWord));
+                maxSim = Math.max(maxSim, pfspWord2VecModel.similarity(noteWord, paperWord));
             }
 
             if (maxSim != 0) {

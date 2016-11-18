@@ -1,11 +1,11 @@
 package com.brko.service.ml.models;
 
 /**
- * Simplified word model for {@link Word2Vec}.
+ * Simplified word model for {@link PfspWord2Vec}.
  *
  * Created by ppetrov on 9/18/2016.
  */
-public class Word {
+public class PfspWord {
 
     private String word;
 
