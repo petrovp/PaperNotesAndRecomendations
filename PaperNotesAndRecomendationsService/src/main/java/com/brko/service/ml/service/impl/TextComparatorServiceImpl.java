@@ -1,5 +1,6 @@
 package com.brko.service.ml.service.impl;
 
+import com.brko.service.ml.models.PfspStopWords;
 import com.brko.service.ml.models.PfspWord2Vec;
 import com.brko.service.ml.service.TextComparatorService;
 import com.google.common.collect.Lists;
@@ -70,8 +71,12 @@ public class TextComparatorServiceImpl implements TextComparatorService {
         double similarity = 1.0;
 
         for (String noteWord : noteWords) {
+            if (PfspStopWords.isStopWord(noteWord)) continue;
+
             double maxSim = 0.0;
             for (String paperWord : paperWords) {
+                if (PfspStopWords.isStopWord(paperWord)) continue;
+
                 maxSim = Math.max(maxSim, pfspWord2VecModel.similarity(noteWord, paperWord));
             }
 
