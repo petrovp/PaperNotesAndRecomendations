@@ -102,7 +102,7 @@ public class TextComparatorServiceImpl implements TextComparatorService {
                 continue;
             }
 
-            sentanceWords.add(hasWord.word());
+            sentanceWords.add(hasWord.word().toLowerCase());
         }
         return sentanceWords;
     }
