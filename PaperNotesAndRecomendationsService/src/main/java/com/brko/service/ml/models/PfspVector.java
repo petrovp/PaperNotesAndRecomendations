@@ -15,8 +15,16 @@ public class PfspVector {
         for (float element : elements) {
             this.vector.add(element);
         }
-
         this.length = calculateLength();
+
+        normalizeVector();
+    }
+
+    private void normalizeVector() {
+        for (float el : vector) {
+            el/=this.length;
+        }
+        this.length = 1.0;
     }
 
     private double calculateLength() {

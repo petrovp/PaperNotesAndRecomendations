@@ -13,7 +13,6 @@ import java.util.Vector;
 public class PfspWord2Vec {
 
     private Map<String, PfspVector> wordVectorMap;
-    private Map<String, Float> wordVectorsLength;
 
     public PfspWord2Vec() {
         this.wordVectorMap = Maps.newHashMap();
@@ -42,14 +41,14 @@ public class PfspWord2Vec {
 
         return word1.equals(word2)
                 ? 1.0D
-                : innerProduct(vector1.getVector(), vector2.getVector())/(vector1.getLength() * vector2.getLength());
+                : 1.0 / euclidianDistance(vector1.getVector(), vector2.getVector());
     }
 
-    private double innerProduct(Vector<Float> vector1, Vector<Float> vector2) {
-        double product = 0.0;
+    private double euclidianDistance(Vector<Float> vector1, Vector<Float> vector2) {
+        double sum = 0.0;
         for(int i=0;i<vector1.size();i++) {
-            product += vector1.get(i)*vector2.get(i);
+            sum += (vector1.get(i) - vector2.get(i)) * (vector1.get(i) - vector2.get(i));
         }
-        return product;
+        return Math.sqrt(sum);
     }
 }
