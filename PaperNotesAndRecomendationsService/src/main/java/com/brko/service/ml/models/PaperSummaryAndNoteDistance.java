@@ -6,19 +6,19 @@ import com.brko.service.persistance.datamodel.PaperSummary;
 /**
  * Created by ppetrov on 11/12/2016.
  */
-public class PaperSummaryAndNoteSimilarity implements Comparable<PaperSummaryAndNoteSimilarity>{
+public class PaperSummaryAndNoteDistance implements Comparable<PaperSummaryAndNoteDistance>{
     private PaperSummary paperSummary;
     private Note note;
-    private double similarity;
+    private double distance;
 
-    public PaperSummaryAndNoteSimilarity(PaperSummary paperSummary, Note note, double similarity) {
+    public PaperSummaryAndNoteDistance(PaperSummary paperSummary, Note note, double distance) {
         this.paperSummary = paperSummary;
         this.note = note;
-        this.similarity = similarity;
+        this.distance = distance;
     }
 
-    public int compareTo(PaperSummaryAndNoteSimilarity o) {
-        return Double.compare(o.similarity, similarity);
+    public int compareTo(PaperSummaryAndNoteDistance o) {
+        return Double.compare(o.distance, distance);
     }
 
     public PaperSummary getPaperSummary() {
@@ -37,11 +37,15 @@ public class PaperSummaryAndNoteSimilarity implements Comparable<PaperSummaryAnd
         this.note = note;
     }
 
-    public void setSimilarity(double similarity) {
-        this.similarity = similarity;
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public double getDistance() {
+        return distance;
     }
 
     public double getSimilarity() {
-        return similarity;
+        return 1.0 - this.getDistance();
     }
 }

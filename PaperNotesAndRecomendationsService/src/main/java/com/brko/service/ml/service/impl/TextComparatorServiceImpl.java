@@ -8,6 +8,7 @@ import com.google.common.collect.Maps;
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.process.DocumentPreprocessor;
 import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.math3.util.Pair;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -68,32 +68,30 @@ public class TextComparatorServiceImpl implements TextComparatorService {
         }
     }
 
-    public double computeSimilarity(String paperText, String noteText) {
+    public double computeDistance(String paperText, String noteText) {
         List<String> paperWords = getWordsFromText(paperText);
         List<String> noteWords = getWordsFromText(noteText);
 
-        Map<String, Double> noteNbowMap = getNbowMapForListOfWords(noteWords);
-        Map<String, Double> paperNbowMap = getNbowMapForListOfWords(paperWords);
+        List<Pair<String, Double>> noteNbowPairs = getNbowPairsForListOfWords(noteWords);
+        List<Pair<String, Double>> paperNbowPairs = getNbowPairsForListOfWords(paperWords);
 
-        ArrayList<String> noteDistinceWords = Lists.newArrayList(noteNbowMap.keySet());
-        ArrayList<String> paperDistinctWords = Lists.newArrayList(paperNbowMap.keySet());
-
-        double [][] transportationMatrix = createTransportationMatrix(
-                noteDistinceWords, noteNbowMap, paperDistinctWords, paperNbowMap);
-
-        double totalDistance = 0.0;
-        for (int i=0;i<noteDistinceWords.size();i++) {
-            double minDistance = Double.MAX_VALUE;
-
-            for (int j=0;j<paperDistinctWords.size();j++) {
+        double [][] costMatrix = new double[noteNbowPairs.size()][paperNbowPairs.size()];
+        for (int i=0;i<noteNbowPairs.size();i++) {
+            for (int j=0;j<paperNbowPairs.size();j++) {
                 double cost = pfspWord2VecModel
-                        .distance(noteDistinceWords.get(i), paperDistinctWords.get(j)) * transportationMatrix[i][j];
-                minDistance = Math.min(minDistance, cost);
+                        .distance(noteNbowPairs.get(i).getFirst(), paperNbowPairs.get(j).getFirst());
+                costMatrix[i][j] = cost;
             }
-            totalDistance += minDistance;
         }
 
-        return 1.0 - totalDistance;
+        return computeDistanceWithLinearProgramming(costMatrix, noteNbowPairs, paperNbowPairs);
+    }
+
+    private double computeDistanceWithLinearProgramming(
+            double[][] costMatrix,
+            List<Pair<String, Double>> noteNbowPairs,
+            List<Pair<String, Double>> paperNbowPairs) {
+        return 0;
     }
 
     private double[][] createTransportationMatrix(
@@ -111,7 +109,7 @@ public class TextComparatorServiceImpl implements TextComparatorService {
         return transportationMatrix;
     }
 
-    private Map<String, Double> getNbowMapForListOfWords(List<String> words) {
+    private List<Pair<String, Double>> getNbowPairsForListOfWords(List<String> words) {
         Map<String, Double> nBow = Maps.newHashMap();
 
         for (String word : words) {
@@ -125,7 +123,11 @@ public class TextComparatorServiceImpl implements TextComparatorService {
             nBow.put(word, nBow.get(word) / words.size());
         }
 
-        return nBow;
+        return nBow
+                .entrySet()
+                .stream()
+                .map(entry -> new Pair<String, Double>(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList());
     }
 
     private List<String> getWordsFromText(String text) {

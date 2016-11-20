@@ -11,5 +11,5 @@ public interface TextComparatorService {
      * @param noteText the text from Note
      * @return the similarity
      */
-    double computeSimilarity(String paperText, String noteText);
+    double computeDistance(String paperText, String noteText);
 }

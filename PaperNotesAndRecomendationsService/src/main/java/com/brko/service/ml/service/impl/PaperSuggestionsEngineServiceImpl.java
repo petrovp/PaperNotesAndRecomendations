@@ -1,6 +1,6 @@
 package com.brko.service.ml.service.impl;
 
-import com.brko.service.ml.models.PaperSummaryAndNoteSimilarity;
+import com.brko.service.ml.models.PaperSummaryAndNoteDistance;
 import com.brko.service.ml.models.PaperSummaryScoreForUser;
 import com.brko.service.ml.service.PaperSuggestionsEngineService;
 import com.brko.service.ml.service.TextComparatorService;
@@ -50,24 +50,25 @@ public class PaperSuggestionsEngineServiceImpl implements PaperSuggestionsEngine
         }
 
         for (Note note : notesByUser) {
-            List<PaperSummaryAndNoteSimilarity> similarities = Lists.newArrayList();
+            List<PaperSummaryAndNoteDistance> distances = Lists.newArrayList();
             for (PaperSummary paperSummary : allPaperSummaries) {
                 try {
-                    double similarity =
-                            textComparatorService.computeSimilarity(paperSummary.getAbstractContent(), note.getText());
+                    double distance =
+                            textComparatorService.computeDistance(paperSummary.getAbstractContent(), note.getText());
 
-                    PaperSummaryAndNoteSimilarity paperSummaryAndNoteSimilarity =
-                            new PaperSummaryAndNoteSimilarity(paperSummary, note, similarity);
-                    similarities.add(paperSummaryAndNoteSimilarity);
+                    PaperSummaryAndNoteDistance paperSummaryAndNoteDistance =
+                            new PaperSummaryAndNoteDistance(paperSummary, note, distance);
+                    distances.add(paperSummaryAndNoteDistance);
                 } catch (RuntimeException e) {
                     logger.error(e);
                 }
             }
 
-            for (PaperSummaryAndNoteSimilarity similarity : similarities) {
+            normalizeDistances(distances);
+            for (PaperSummaryAndNoteDistance distance : distances) {
                 PaperSummaryScoreForUser paperSummaryScoreForUser =
-                        paperSummaryWithScoresMap.get(similarity.getPaperSummary());
-                double newScore = similarity.getSimilarity() + paperSummaryScoreForUser.getScore();
+                        paperSummaryWithScoresMap.get(distance.getPaperSummary());
+                double newScore = distance.getSimilarity() + paperSummaryScoreForUser.getScore();
                 paperSummaryScoreForUser.setScore(newScore);
             }
         }
@@ -80,5 +81,18 @@ public class PaperSuggestionsEngineServiceImpl implements PaperSuggestionsEngine
                 .map(PaperSummaryScoreForUser::getPaperSummary)
                 .collect(Collectors.toList())
                 .subList(0, 100);
+    }
+
+    private void normalizeDistances(List<PaperSummaryAndNoteDistance> distances) {
+        double maxDistance =
+                distances
+                .stream()
+                .max((o1, o2) -> Double.compare(o1.getDistance(), o2.getDistance()))
+                .get()
+                .getDistance();
+
+        for (PaperSummaryAndNoteDistance distance : distances) {
+            distance.setDistance(distance.getDistance() / maxDistance);
+        }
     }
 }
