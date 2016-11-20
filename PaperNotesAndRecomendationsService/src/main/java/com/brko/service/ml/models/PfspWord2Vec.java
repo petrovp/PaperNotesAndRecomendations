@@ -31,17 +31,17 @@ public class PfspWord2Vec {
         wordVectorMap.put(wordStr, pfspVector);
     }
 
-    public double similarity(String word1, String word2) {
+    public double distance(String word1, String word2) {
         PfspVector vector1 = wordVectorMap.get(word1);
         PfspVector vector2 = wordVectorMap.get(word2);
 
         if (vector1 == null || vector2 == null) {
-            return 0.0;
+            return Double.MAX_VALUE;
         }
 
         return word1.equals(word2)
-                ? 1.0D
-                : 1.0 / euclidianDistance(vector1.getVector(), vector2.getVector());
+                ? 0.0D
+                : euclidianDistance(vector1.getVector(), vector2.getVector());
     }
 
     private double euclidianDistance(Vector<Float> vector1, Vector<Float> vector2) {

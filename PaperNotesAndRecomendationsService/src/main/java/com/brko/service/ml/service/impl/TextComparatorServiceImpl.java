@@ -70,21 +70,18 @@ public class TextComparatorServiceImpl implements TextComparatorService {
         List<String> paperWords = getWordsFromText(paperText);
         List<String> noteWords = getWordsFromText(noteText);
 
-        double similarity = 1.0;
+        double totalDistance = 0.0;
 
         for (String noteWord : noteWords) {
-            double maxSim = 0.0;
+            double minDistance = Double.MAX_VALUE;
 
             for (String paperWord : paperWords) {
-                maxSim = Math.max(maxSim, pfspWord2VecModel.similarity(noteWord, paperWord));
+                minDistance = Math.min(minDistance, pfspWord2VecModel.distance(noteWord, paperWord));
             }
-
-            if (maxSim != 0) {
-                similarity *= maxSim;
-            }
+            totalDistance += minDistance;
         }
 
-        return similarity;
+        return 1.0 / (totalDistance / noteWords.size());
     }
 
     private List<String> getWordsFromText(String text) {
