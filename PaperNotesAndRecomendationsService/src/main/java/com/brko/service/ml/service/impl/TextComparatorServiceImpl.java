@@ -4,6 +4,7 @@ import com.brko.service.ml.models.PfspStopWords;
 import com.brko.service.ml.models.PfspWord2Vec;
 import com.brko.service.ml.service.TextComparatorService;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.process.DocumentPreprocessor;
 import org.apache.commons.lang.BooleanUtils;
@@ -15,8 +16,10 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 
@@ -66,33 +69,74 @@ public class TextComparatorServiceImpl implements TextComparatorService {
     }
 
     public double computeSimilarity(String paperText, String noteText) {
-
         List<String> paperWords = getWordsFromText(paperText);
         List<String> noteWords = getWordsFromText(noteText);
 
-        double totalDistance = 0.0;
+        Map<String, Double> noteNbowMap = getNbowMapForListOfWords(noteWords);
+        Map<String, Double> paperNbowMap = getNbowMapForListOfWords(paperWords);
 
-        for (String noteWord : noteWords) {
+        ArrayList<String> noteDistinceWords = Lists.newArrayList(noteNbowMap.keySet());
+        ArrayList<String> paperDistinctWords = Lists.newArrayList(paperNbowMap.keySet());
+
+        double [][] transportationMatrix = createTransportationMatrix(
+                noteDistinceWords, noteNbowMap, paperDistinctWords, paperNbowMap);
+
+        double totalDistance = 0.0;
+        for (int i=0;i<noteDistinceWords.size();i++) {
             double minDistance = Double.MAX_VALUE;
 
-            for (String paperWord : paperWords) {
-                minDistance = Math.min(minDistance, pfspWord2VecModel.distance(noteWord, paperWord));
+            for (int j=0;j<paperDistinctWords.size();j++) {
+                double cost = pfspWord2VecModel
+                        .distance(noteDistinceWords.get(i), paperDistinctWords.get(j)) * transportationMatrix[i][j];
+                minDistance = Math.min(minDistance, cost);
             }
             totalDistance += minDistance;
         }
 
-        return 1.0 / (totalDistance / noteWords.size());
+        return 1.0 / totalDistance;
+    }
+
+    private double[][] createTransportationMatrix(
+            List<String> noteWords,
+            Map<String, Double> noteNbowMap,
+            List<String> paperWords,
+            Map<String, Double> paperNbowMap) {
+
+        double [][] transportationMatrix = new double[noteNbowMap.size()][paperNbowMap.size()];
+        for (int i=0;i<noteWords.size(); i++) {
+            for (int j=0;j<paperWords.size();j++) {
+                transportationMatrix[i][j] = noteNbowMap.get(noteWords.get(i)) * paperNbowMap.get(paperWords.get(j));
+            }
+        }
+        return transportationMatrix;
+    }
+
+    private Map<String, Double> getNbowMapForListOfWords(List<String> words) {
+        Map<String, Double> nBow = Maps.newHashMap();
+
+        for (String word : words) {
+            if (!nBow.containsKey(word)) {
+                nBow.put(word, 0.0);
+            }
+            nBow.put(word, nBow.get(word) + 1.0);
+        }
+
+        for (String word : nBow.keySet()) {
+            nBow.put(word, nBow.get(word) / words.size());
+        }
+
+        return nBow;
     }
 
     private List<String> getWordsFromText(String text) {
         DocumentPreprocessor documentPreprocessor = new DocumentPreprocessor(new StringReader(text));
 
-        List<String> firstTextWords = Lists.newArrayList();
+        List<String> textWords = Lists.newArrayList();
         for (List<HasWord> sentence : documentPreprocessor) {
-            firstTextWords.addAll(getWordsFromSentance(sentence));
+            textWords.addAll(getWordsFromSentance(sentence));
         }
 
-        return firstTextWords.stream().distinct().collect(Collectors.toList());
+        return textWords;
     }
 
     private Collection<? extends String> getWordsFromSentance(List<HasWord> sentence) {
