@@ -93,7 +93,7 @@ public class TextComparatorServiceImpl implements TextComparatorService {
             totalDistance += minDistance;
         }
 
-        return 1.0 / totalDistance;
+        return 1.0 - totalDistance;
     }
 
     private double[][] createTransportationMatrix(
