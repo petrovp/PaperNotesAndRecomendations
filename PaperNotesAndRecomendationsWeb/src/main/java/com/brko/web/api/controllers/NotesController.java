@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static java.util.Collections.sort;
+
 /**
  * Created by ppetrov on 11/3/2016.
  */
@@ -26,8 +28,9 @@ public class NotesController {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Note> getNotes() {
         User user = userProvider.getUser();
-
-        return notesService.getNotesByUserEmail(user.getEmail());
+        List<Note> notesByUserEmail = notesService.getNotesByUserEmail(user.getEmail());
+        sort(notesByUserEmail);
+        return notesByUserEmail;
     }
 
     @RequestMapping(value = "/add_note", method = RequestMethod.POST)
@@ -36,7 +39,9 @@ public class NotesController {
 
         notesService.saveNote(text, authenticatedUser);
 
-        return notesService.getNotesByUserEmail(authenticatedUser.getEmail());
+        List<Note> notesByUserEmail = notesService.getNotesByUserEmail(authenticatedUser.getEmail());
+        sort(notesByUserEmail);
+        return notesByUserEmail;
     }
 
     @RequestMapping(value = "/edit_note", method = RequestMethod.POST)
@@ -44,6 +49,8 @@ public class NotesController {
         notesService.editNote(note);
 
         User user = userProvider.getUser();
-        return notesService.getNotesByUserEmail(user.getEmail());
+        List<Note> notesByUserEmail = notesService.getNotesByUserEmail(user.getEmail());
+        sort(notesByUserEmail);
+        return notesByUserEmail;
     }
 }

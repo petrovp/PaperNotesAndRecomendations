@@ -17,6 +17,8 @@ import {
     Checkbox
 } from 'rc-checkbox'
 
+import './register.scss'
+
 class Register extends React.Component {
 
     constructor(props) {
@@ -39,51 +41,54 @@ class Register extends React.Component {
         }
 
         return (
-            <Form>
-                <FormGroup bsSize="sm">
-                    <FormControl
-                        name="email"
-                        type="email"
-                        placeholder="Email"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
+            <div className="register-container" >
+                <div className="container">
+                    <Form className="reg-form">
+                        <FormGroup bsSize="sm">
+                            <FormControl
+                                name="email"
+                                type="email"
+                                placeholder="Email"
+                                onChange={handleChange}
+                            />
+                        </FormGroup>
 
-                <FormGroup bsSize="sm">
-                    <FormControl
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        bsSize="sm"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
+                        <FormGroup bsSize="sm">
+                            <FormControl
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                bsSize="sm"
+                                onChange={handleChange}
+                            />
+                        </FormGroup>
 
-                <FormGroup bsSize="sm">
-                    <FormControl
-                        name="firstName"
-                        type="text"
-                        placeholder="First Name"
-                        bsSize="sm"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
+                        <FormGroup bsSize="sm">
+                            <FormControl
+                                name="firstName"
+                                type="text"
+                                placeholder="First Name"
+                                bsSize="sm"
+                                onChange={handleChange}
+                            />
+                        </FormGroup>
 
-                <FormGroup bsSize="sm">
-                    <FormControl
-                        name="lastName"
-                        type="text"
-                        placeholder="Last Name"
-                        bsSize="sm"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
+                        <FormGroup bsSize="sm">
+                            <FormControl
+                                name="lastName"
+                                type="text"
+                                placeholder="Last Name"
+                                bsSize="sm"
+                                onChange={handleChange}
+                            />
+                        </FormGroup>
 
-                <Button active={true} bsSize="sm" bsStyle="primary" onClick={ handleRegisterClick }>
-                    Register
-                </Button>
-
-            </Form>
+                        <Button active={true} bsSize="sm" bsStyle="primary" onClick={ handleRegisterClick }>
+                            Register
+                    </Button>
+                </Form>
+            </div>
+        </div>
         );
     }
 }

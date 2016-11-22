@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by ppetrov on 11/4/2016.
  */
 @Document
-public class Note extends NamedDocument {
+public class Note extends NamedDocument implements Comparable<Note> {
 
     private String text;
 
@@ -38,5 +38,10 @@ public class Note extends NamedDocument {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    @Override
+    public int compareTo(Note o) {
+        return o.createdOn.compareTo(this.createdOn);
     }
 }

@@ -6,6 +6,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 import * as Actions from './notesActions'
 import './notes.scss'
+import 'react-toolbox/lib/card/theme.scss';
 
 import {
     Form,
@@ -15,7 +16,6 @@ import {
 } from 'react-bootstrap';
 
 import { Card, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-import { Input } from 'react-toolbox/lib/input';
 
 import {
     getNotesFromState
@@ -47,20 +47,37 @@ class Notes extends React.Component {
             saveNoteRequest(this.noteText);
         };
 
+        const getPartForSharedNote = (note) => {
+            if (note.id === '5834c9be890e0e1f14b279a7') {
+                return (
+                    <div className="shared-from">
+                        Shared from ppetrov.
+                    </div>
+                )
+            }
+        }
+
         const renderNotes = () =>
             notes.map(note =>
                 <Card
-                    style={{width: '350px'}}
+                    className="card note-card"
+                    style={{width: '450px'}}
                     key={note.id}
                 >
+                    {getPartForSharedNote(note)}
                     <CardTitle
-                        title="Note"
-                        subtitle={note.createdOn}
+                        className="cardTitle"
+                        title="Graduation note"
+                        subtitle={new Date(note.createdOn).toDateString()}
                     />
-                    <CardText>{note.text}</CardText>
-                    <CardActions >
-                        <Button bsStyle="primary" > Edit </Button>
-                        <Button bsStyle="primary" > Share </Button>
+                    <CardText
+                        className="cardText"
+                    >
+                        {note.text}
+                    </CardText>
+                    <CardActions className="cardActions">
+                        <Button bsStyle="primary" className="action-button" > Edit </Button>
+                        <Button bsStyle="primary" className="action-button" > Share </Button>
                     </CardActions>
                 </Card>
             )
@@ -68,7 +85,7 @@ class Notes extends React.Component {
         return (
             <div className="notes_container container">
 
-                <Form sm={8}>
+                <Form className="notes-form">
                     <FormGroup bsSize="sm">
                         <FormControl
                             name="new_note"
@@ -79,7 +96,12 @@ class Notes extends React.Component {
                         />
                     </FormGroup>
 
-                    <Button active={true} bsSize="sm" bsStyle="primary" onClick={ handleSaveNoteButtonClick }>
+                    <Button
+                        className="save-note-button"
+                        active={true}
+                        bsSize="sm"
+                        bsStyle="primary"
+                        onClick={ handleSaveNoteButtonClick }>
                         Save Note
                     </Button>
                 </Form>
@@ -87,7 +109,7 @@ class Notes extends React.Component {
                 <div>
                     <Scrollbars
                         thumbMinSize={10}
-                        style={{ width: 500, height: 300 }}
+                        style={{ width: 500, height: 600 }}
                     >
                         <div>
                             {renderNotes()}

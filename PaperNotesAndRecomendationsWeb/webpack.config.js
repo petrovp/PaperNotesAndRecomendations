@@ -67,7 +67,8 @@ var config = {
 
     sassLoader: {
         includePaths: [
-            path.resolve(__dirname, appRoot, 'app')]
+            path.resolve(__dirname, appRoot, 'app')
+        ]
     },
 
     postcss: [autoprefixer({

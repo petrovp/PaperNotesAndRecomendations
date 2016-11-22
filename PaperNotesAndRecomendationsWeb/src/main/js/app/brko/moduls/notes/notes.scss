@@ -1,3 +1,29 @@
+
 .notes-container {
   margin-top: 50px;
+}
+
+.note-card {
+  margin-bottom: 20px;
+}
+
+.action-button{
+  margin-right: 20px;
+}
+
+.shared-from {
+  font-style: italic;
+  width: 120%;
+  padding-right: 30px;
+  background: #4abdac;
+}
+
+.notes-form {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 400px;
+
+  .save-note-button {
+    float:right;
+  }
 }
