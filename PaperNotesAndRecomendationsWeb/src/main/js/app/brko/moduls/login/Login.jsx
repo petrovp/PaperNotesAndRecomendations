@@ -8,6 +8,8 @@ import { bindActionCreators } from 'redux';
 
 import * as Actions from './loginActions'
 
+import './login.scss';
+
 import { Form, Button, FormGroup, FormControl } from 'react-bootstrap';
 
 class Login extends React.Component{
@@ -32,30 +34,41 @@ class Login extends React.Component{
         }
 
         return (
-            <Form>
-                <FormGroup bsSize="sm">
-                    <FormControl
-                        name="email"
-                        type="email"
-                        placeholder="Email"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
+            <div className="login-container">
+                <div className="container" >
+                    <Form className="form">
+                        <FormGroup bsSize="sm">
+                            <FormControl
+                                name="email"
+                                type="email"
+                                placeholder="Email"
+                                onChange={handleChange}
+                            />
+                        </FormGroup>
 
-                <FormGroup bsSize="sm">
-                    <FormControl
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        bsSize="sm"
-                        onChange={handleChange}
-                    />
-                </FormGroup>
+                        <FormGroup bsSize="sm">
+                            <FormControl
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                bsSize="sm"
+                                onChange={handleChange}
+                            />
+                        </FormGroup>
 
-                <Button active={true} bsSize="sm" bsStyle="primary" type="submit" onClick={handleOnLoginClick}>
-                    Login
-                </Button>
-            </Form>
+                        <Button
+                            active={true}
+                            bsSize="sm"
+                            className="login-button"
+                            bsStyle="primary"
+                            type="submit"
+                            onClick={handleOnLoginClick}
+                        >
+                            Login
+                        </Button>
+                    </Form>
+                </div>
+            </div>
         );
     }
 }

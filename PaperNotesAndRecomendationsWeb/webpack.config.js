@@ -9,10 +9,9 @@ const autoprefixer = require('autoprefixer');
 
 var appRoot = 'src/main/js';
 
-var shouldUseSourceMaps = true;
 var cssLoaderConfig = {
     discardEmpty: true,
-    sourceMap: shouldUseSourceMaps
+    sourceMap: true
 };
 
 var config = {
@@ -37,33 +36,47 @@ var config = {
             },
             {
                 test: /\.s?css$/,
-                exclude: /(node_modules)/,
                 loader: ExtractTextPlugin.extract('style-loader', [
                     'css-loader?' + JSON.stringify(cssLoaderConfig),
                     'postcss-loader',
-                    'sass-loader' + (shouldUseSourceMaps ? '?sourceMap' : '')
+                    'sass-loader'
                 ])
-            },
-            {
-                test: /(\.scss|\.css)$/,
-                loader: ExtractTextPlugin
-                    .extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass')
             },
             {
                 test: /\.html$/,
                 loader: 'raw-loader'
-            }
+            },
+            {
+                test: /\.(jpe?g|png|gif)$/,
+                exclude: /(node_modules)/,
+                loader: 'url-loader',
+                query: {
+                    limit: 4096,
+                    name: 'assets/images/[name].[ext]'
+                }
+            },
         ]
     },
 
     resolve: {
-        extensions: ['', '.js', '.jsx', '.scss', '.css'],
+        extensions: ['', '.js', '.jsx'],
         root: [
             path.join(__dirname, appRoot, 'app'),
         ]
     },
 
-    postcss: [autoprefixer],
+    sassLoader: {
+        includePaths: [
+            path.resolve(__dirname, appRoot, 'app')]
+    },
+
+    postcss: [autoprefixer({
+        browsers: [
+            'Chrome >= 10',
+            'Firefox >= 25',
+            'Safari >= 8'
+        ]
+    })],
 
     plugins: [
         new ExtractTextPlugin('[name].css'),

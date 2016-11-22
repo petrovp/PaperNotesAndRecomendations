@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import * as Actions from './notesActions'
+import './notes.scss'
 
 import {
     Form,
@@ -14,10 +15,7 @@ import {
 } from 'react-bootstrap';
 
 import { Card, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
-
-import {
-    getTokenFromState
-} from './../login/loginReducer'
+import { Input } from 'react-toolbox/lib/input';
 
 import {
     getNotesFromState
@@ -68,14 +66,15 @@ class Notes extends React.Component {
             )
 
         return (
-            <div className="notes_container">
+            <div className="notes_container container">
 
-                <Form>
+                <Form sm={8}>
                     <FormGroup bsSize="sm">
                         <FormControl
-                            name="email"
-                            type="email"
-                            placeholder="Email"
+                            name="new_note"
+                            type="text"
+
+                            placeholder="Note..."
                             onChange={handleChange}
                         />
                     </FormGroup>
