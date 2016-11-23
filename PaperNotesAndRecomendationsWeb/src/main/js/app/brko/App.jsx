@@ -13,7 +13,7 @@ import Demo from './demo/ui/Demo';
 import Home from './moduls/home/Home';
 import Login from './moduls/login/Login';
 import Register from './moduls/registration/Register';
-import Notes from './moduls/notes/Notes'
+import Notes from './moduls/notesAndPapers/NotesAndPapers'
 
 const store = configureStore(browserHistory);
 const appRootUrl = "/";

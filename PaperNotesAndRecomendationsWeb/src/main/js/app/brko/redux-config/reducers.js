@@ -8,7 +8,7 @@ import { routerReducer } from 'react-router-redux';
 import demoReducer from '../demo/reducers/demoRootReducer';
 import registrationReducer from '../moduls/registration/registraionReducer'
 import loginReducer from '../moduls/login/loginReducer'
-import notesReducer from '../moduls/notes/notesReducer'
+import notesReducer from '../moduls/notesAndPapers/notesAndPapersReducer'
 
 export const rootReducer = combineReducers({
   demo: demoReducer(),

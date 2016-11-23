@@ -1,10 +1,18 @@
 
+.main-container {
+  background-color: #F9FBE7;
+}
+
 .notes-container {
   margin-top: 50px;
 }
 
 .note-card {
   margin-bottom: 20px;
+
+  .cardTitle{
+    font-weight: bold;
+  }
 }
 
 .action-button{
@@ -21,9 +29,18 @@
 .notes-form {
   padding-top: 50px;
   padding-bottom: 50px;
-  width: 400px;
+  width: 600px;
 
   .save-note-button {
     float:right;
   }
+}
+
+.notes-scrollbar-container {
+  display: inline-block;
+}
+
+.papers-scrollbar-container {
+  display: inline-block;
+  float:right;
 }
